@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerButton
+  - 4
+  - 2
+  - 6
+  - 5
+  - 1
+  - 3
+  - Dice
+  - Cell
+  - GameManager
+  - TurnManager
+  - CellManager
+  - PauseMenu
+  - GameManagerUI
+  - PhysicsDice
+  - GameRules
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Sky
+  - Water
+  - UI
+  - Dice
+  - DiceLimits
+  - Cells
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
