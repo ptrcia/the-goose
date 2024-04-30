@@ -7,6 +7,7 @@ public class ThrowDice : MonoBehaviour
     new Rigidbody rigidbody;
     public bool canRoll = true;
     public bool hasRolled = false;
+    bool clickedOn = false;
     DiceRaycast[] diceFaces;
 
     [SerializeField]
@@ -26,21 +27,27 @@ public class ThrowDice : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rigidbody.velocity.magnitude != 0) {
+        if (rigidbody.velocity.magnitude != 0 && clickedOn) 
+        {
             hasRolled = true;
         } else if (hasRolled && rigidbody.velocity.magnitude <0.5)
         {
             int result = 0;
             foreach (DiceRaycast face in diceFaces)
             {
-                //face.CheckForColliders();
                 result = face.CheckForColliders();
+                if (result != 0)
+                {
+                    break; 
+                }
             }
             hasRolled = false;
             canRoll = true;
+            this.diceResult = result;
+            diceResultUpdated = true;
+            Debug.Log("RESULTADO = " + result);
+            Debug.Log(diceResultUpdated);
         }
-
-        //Debug.Log("Has rolled? -> " + hasRolled);
     }
 
     #region Physics: Force && Torque
@@ -97,6 +104,7 @@ public class ThrowDice : MonoBehaviour
    
             rigidbody.AddTorque(vectorTorque * resultRandomForce, ForceMode.Impulse);
             //Debug.Log(vectorTorque);
+            clickedOn = true;
         }
     }
     #endregion
@@ -106,7 +114,7 @@ public class ThrowDice : MonoBehaviour
         if (diceResultUpdated)
         {
             diceResultUpdated = false;
-            return diceResult;
+            return this.diceResult;
         }
         else
         {

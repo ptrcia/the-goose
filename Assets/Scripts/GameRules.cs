@@ -12,7 +12,7 @@ public class GameRules : MonoBehaviour
     int secondBridge = 11;
 
     int firstDice = 25;
-    int secondDice = 51;
+    int secondDice = 52;
     int finalCell = 62;
 
     [Header("Well Rule")]
@@ -30,12 +30,9 @@ public class GameRules : MonoBehaviour
 
     public void CheckSpecialCell(PlayerMovement _playerMovement, GameObject player)
     {
-        Debug.Log("CURRENT CELL PLAYER   " + _playerMovement.currentCell);
-
         CheckGameObjects();
 
         switch (_playerMovement.currentCell)
-
         {
             case 4 or 8 or 13 or 17 or 22 or 26 or 31 or 35 or
                40 or 44 or 49 or 53 or 58:
@@ -62,7 +59,7 @@ public class GameRules : MonoBehaviour
                 Debug.Log("Dados");
                 Dices();
                 break;
-            case 55:
+            case 51:
                 Debug.Log("Carcel");
                 Jail();
                 break;
@@ -140,22 +137,24 @@ public class GameRules : MonoBehaviour
             {
                 // Set free whoever was in the well
                 playerInWell.noPlayableTurns = 0;
-                Debug.Log("EL PLAYER " + playerInWell.playerID + " ESTA LIBRE DEL POZO GRACIAS A " + _playerMovement.playerID);
+                Debug.Log("the player " + playerInWell.playerID + " has been released thanks to: " + _playerMovement.playerID);
             }
 
             playerInWell = _playerMovement;
-            Debug.Log("EL PLAYER " + playerInWell.playerID + " QUEDA ATASCADO EN EL POZO DURANTE " + _playerMovement.noPlayableTurns + " TURNOS");
+            Debug.Log("the player " + playerInWell.playerID + " is stuck during: " + _playerMovement.noPlayableTurns + " TURNOS");
             
         }
         void Labyrinth()
         {
             _playerMovement.currentCell = 30;
-            CellManager.instance.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            Well();
 
         }
         void Jail()
         {
             _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 2;
+            Debug.Log("No entra aqui?");
         }
         void Dices()
         {
@@ -175,7 +174,30 @@ public class GameRules : MonoBehaviour
         }
         void Death()
         {
-            _playerMovement.currentCell = 1;
+            if(_playerMovement.playerID == "Player 1")
+            {
+                _playerMovement.currentCell = 63;
+                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            }else if(_playerMovement.playerID == "Player 2")
+            {
+                _playerMovement.currentCell = 64;
+                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell ].position;
+            }
+            else if (_playerMovement.playerID == "Player 3")
+            {
+                _playerMovement.currentCell = 65;
+                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            }
+            else if (_playerMovement.playerID == "Player 4")
+            {
+                _playerMovement.currentCell = 66;
+                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            }
+            else
+            {
+                Debug.Log("No es el ID");
+            }
+
         }
         void Final()
         {

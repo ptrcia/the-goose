@@ -1,7 +1,10 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public int diceValue = 0;
     public string playerID = "sinID";
 
+    private int input;
     private void Awake()
     {
         gameRules = GameObject.FindGameObjectWithTag("GameRules").GetComponent<GameRules>();
         dice = GameObject.FindGameObjectWithTag("Dice").GetComponent<Dice>();
         throwDice = GameObject.FindGameObjectWithTag("PhysicsDice").GetComponent<ThrowDice>();
-        //diceRaycast = GameObject.FindGameObjectsWithTag("Dice").GetComponent<DiceRaycast>();
         gameManagerUI = GameObject.FindGameObjectWithTag("GameManagerUI").GetComponent<GameManagerUI>();
     }
     void Start()
@@ -31,10 +34,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Casilla Actual: " + currentCell);
         gameManagerUI.diceImage.localScale = Vector3.zero;
 
-    }
-    private void Update()
-    {
-        //Debug.Log("Has rolled? -> " + throwDice.hasRolled);
     }
 
     #region Move
@@ -44,56 +43,57 @@ public class PlayerMovement : MonoBehaviour
         movementCompleted = false;
         StartCoroutine(WaitForDiceRolled());
     }
+    //custom number
+    public void ReadStringInput(string s)
+    {
+        input = Convert.ToInt32(s);
+        Debug.Log(input);
+
+    }
     IEnumerator WaitForDiceRolled()
     {
-        while (!dice.diceRolled)
+
+        
+        //Custom number
+        int diceResult=0;
+        yield return new WaitUntil(() => UnityEngine.Input.GetKeyDown(KeyCode.Return));
+        diceResult = input;
+
+        /*
+        //Roll the dice
+
+        yield return new WaitUntil(() => throwDice.hasRolled);
+
+        Debug.Log("Dice rolled!");
+        int diceResult = 0;
+
+        do
         {
+            diceResult = throwDice.getDiceResult();
             yield return null;
-        }
-        //Debug.Log("CurrentCell: " + currentCell);
-        int diceResult = dice.RollDice();
-
-
-        Debug.Log("Has rolled? -> " + throwDice.hasRolled); //funciona
-
-
-        //THIS DOES NOT WORK
-        //Waits fot the dice to be rolled
-        /*while (!throwDice.hasRolled)
-        {
-            //yield return null;
-            Debug.Log(".");
-        
-        int diceResult2 = 0;
-        
-        //When rolled, we saved only the number of the face upwards
-        do {
-            diceResult2 = throwDice.getDiceResult();
-        } while (diceResult2 == 0);
-
-        
-        Debug.Log("Dice Result2:" + diceResult2);
-
-        }*/
+        } while (diceResult == 0);
 
         Debug.Log("Dice Result:" + diceResult);
-        for (int i = 0; i < diceResult; i++)
+        */
+        //Movement
+
+        for (int i = 0; i < diceResult; i++) 
         {
             currentCell++;
-            transform.position = CellManager.instance.cells[currentCell].position; //quizas esto es algo?
-            //corrutina
-            //StartMovementAnimation(); 
+            transform.position = CellManager.instance.cells[currentCell].position;
+            yield return new WaitForSeconds(0.3f);
+            //StartMovementAnimation(); //Animation
             Debug.Log("From cell to cell: " + currentCell);
         }
 
-        //gameManagerUI.AnimatingDiceImage();
-        transform.position = CellManager.instance.cells[currentCell].position; //ATENCION
-        //Debug.Log("CurrentCell AFTER chhecking-> " + currentCell);
+        //Final Check
+
+        //transform.position = CellManager.instance.cells[currentCell].position; //change position
         Debug.Log("not playable turns BEFORE checking " + noPlayableTurns);
-        gameRules.CheckSpecialCell(this, this.gameObject);
+        gameRules.CheckSpecialCell(this, this.gameObject); //check if the player has fallen in a Special Cell
         Debug.Log("not playable turns AFTER checking " + noPlayableTurns);
         movementCompleted = true;
-        dice.diceRolled = false;
+        throwDice.hasRolled = false;
     }
 
     public bool HasCompletedMovement()

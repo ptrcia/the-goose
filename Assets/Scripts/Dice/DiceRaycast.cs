@@ -23,25 +23,13 @@ public class DiceRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
-            //diceResult = Int32.Parse(gameObject.name);
             diceResult = Int32.Parse(gameObject.tag.ToString());
             Debug.Log("DiceRaycast ->" + diceResult);
 
             return diceResult;
         } else { 
             return 0;
-            //Debug.Log("DiceRaycast ->" + diceResult);
         }
         
     }
-    /*public void CheckForColliders()
-    {
-        ray = new Ray(transform.position, transform.up);
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
-        {
-            diceResult = Int32.Parse(gameObject.tag.ToString());
-            Debug.Log(diceResult);
-        }
-    }*/
 }
