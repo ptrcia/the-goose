@@ -74,6 +74,8 @@ public class GameRules : MonoBehaviour
             case > 62:
                 Debug.Log("Jardín");
                 Garden();
+                //StartCoroutine(GardenBackwards());
+                //aqui no me funcionada el nameof
                 break;
             default: break;
         }
@@ -90,19 +92,22 @@ public class GameRules : MonoBehaviour
                 { 31, 35 },
                 { 35, 40 },
                 { 40, 44 },
-                { 48, 57 }
+                { 44, 49 },
+                { 49, 53 },
+                { 53, 58 }
             };
 
             if (cellOcaTransitions.ContainsKey(_playerMovement.currentCell))
-                {
-                    int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
-
-                    _playerMovement.currentCell = destinationCell;
-                    player.transform.position = CellManager.instance.cells[destinationCell].position;
-                    turnManager.nextTurnPlayer = false;
-            }
-            else if (_playerMovement.currentCell == 57)
             {
+                int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
+
+                _playerMovement.currentCell = destinationCell;
+                player.transform.position = CellManager.instance.cells[destinationCell].position;
+                turnManager.nextTurnPlayer = false;
+            }
+            else if (_playerMovement.currentCell == 58)
+            {
+                player.transform.position = CellManager.instance.cells[finalCell].position;
                 gameManager.Win();
             }
         }
@@ -176,22 +181,27 @@ public class GameRules : MonoBehaviour
         {
             if(_playerMovement.playerID == "Player 1")
             {
-                _playerMovement.currentCell = 63;
+                _playerMovement.currentCell = 68;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+                _playerMovement.currentCell = 0;
             }else if(_playerMovement.playerID == "Player 2")
             {
-                _playerMovement.currentCell = 64;
+                _playerMovement.currentCell = 69;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell ].position;
+                _playerMovement.currentCell = 0;
             }
             else if (_playerMovement.playerID == "Player 3")
             {
-                _playerMovement.currentCell = 65;
+                _playerMovement.currentCell = 70;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+                _playerMovement.currentCell = 0;
             }
             else if (_playerMovement.playerID == "Player 4")
             {
-                _playerMovement.currentCell = 66;
+                _playerMovement.currentCell = 71;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+                _playerMovement.currentCell = 0;
+
             }
             else
             {
@@ -205,22 +215,42 @@ public class GameRules : MonoBehaviour
         }
         void Garden()
         {
-            //it does not work
-            int difference = 0;
+            int difference = 0; //the difference beetween where the player is and the final cell
             Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);
 
             difference = (_playerMovement.currentCell - finalCell);
 
             Debug.Log("El valor necesario para entrar en el Jardín desde la casilla " + _playerMovement.currentCell + " es: " + difference);
+            Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
 
-            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell - difference].position;
 
-            Debug.Log("El jugador se mueve a la casilla " + (_playerMovement.currentCell - difference));
+            player.transform.position = CellManager.instance.cells[finalCell - difference].position;
+            _playerMovement.currentCell = finalCell - difference;
 
-            _playerMovement.currentCell -= difference;
-
-            CheckSpecialCell(_playerMovement, CellManager.instance.gameObject);
+            CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
         }
+        IEnumerator GardenBackwards()
+        {
+            int difference = 0; //the difference beetween where the player is and the final cell
+            Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);
+
+            difference = (_playerMovement.currentCell - finalCell);
+
+            Debug.Log("El valor necesario para entrar en el Jardín desde la casilla " + _playerMovement.currentCell + " es: " + difference);
+            Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
+
+            //ussing the corroutine if for adding a delay
+            for (int i = _playerMovement.currentCell; i > finalCell - difference; i--)
+            {
+                _playerMovement.currentCell--;
+                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+                yield return new WaitForSeconds(0.5f);
+
+            }
+            //por alguna razon aqui se cambia de jugador
+            CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
+        }
+
     }
     public void CheckWhosTurn(PlayerMovement player)
     {

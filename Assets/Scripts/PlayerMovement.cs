@@ -76,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Dice Result:" + diceResult);
         */
         //Movement
-
+        
         for (int i = 0; i < diceResult; i++) 
         {
             currentCell++;
             transform.position = CellManager.instance.cells[currentCell].position;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.05f);
             //StartMovementAnimation(); //Animation
             Debug.Log("From cell to cell: " + currentCell);
         }

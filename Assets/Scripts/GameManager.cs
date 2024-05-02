@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public void ReloadScene()
     {
         int actualScene = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1;
         AudioListener.pause = true;
         SceneManager.LoadScene(actualScene);
     }

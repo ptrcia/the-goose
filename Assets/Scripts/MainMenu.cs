@@ -41,26 +41,21 @@ public class MainMenu : MonoBehaviour
             case "1":
                 numberPlayers = 1;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //añadir un jugador
                 //Debug.Log("Ha selecionado modo juego "+optionPlayers+" jugador");
                 break;
             case "2":
                 numberPlayers = 2;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //añadir dos jugadores
                 //Debug.Log("Ha selecionado modo juego " + optionPlayers + " jugador");
                 break;
             case "3":
                 numberPlayers = 3;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-
-                //añadir 3 jugadores
                 //Debug.Log("Ha selecionado modo juego " + optionPlayers + " jugador");
                 break;
             case "4":
                 numberPlayers = 4;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //añadir cuatro jugadores
                 //Debug.Log("Ha selecionado modo juego " + optionPlayers + " jugador");
                 break;
         }
