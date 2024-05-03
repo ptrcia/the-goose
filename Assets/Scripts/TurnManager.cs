@@ -27,6 +27,11 @@ public class TurnManager : MonoBehaviour
     List<GameObject> buttonPlayerList = new List<GameObject>();
     int rename = 1;
 
+    [Header("Audio")]
+    [SerializeField]AudioClip audioClip;
+    AudioSource audioSource;
+    
+
     PlayerMovement playerMovement;
     GameManagerUI gameManagerUI;
     Dice dice;
@@ -63,6 +68,7 @@ public class TurnManager : MonoBehaviour
             .GetComponent<GameManagerUI>();
         gameRules = GameObject.FindGameObjectWithTag("GameRules")
             .GetComponent<GameRules>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -112,6 +118,8 @@ public class TurnManager : MonoBehaviour
             //Debug.Log("Button Index: " + players.IndexOf(currentPlayer));
             //Debug.Log("Current Button: " + currentButton.name);
             Debug.Log("-------------------------- NEW TURN");
+            audioSource.PlayOneShot(audioClip);
+            
             Debug.Log("Turno del -> " + currentPlayer.GetComponent<PlayerMovement>().playerID);
             //Debug.Log("Con la etiqueta ->" + currentButton.name);
 

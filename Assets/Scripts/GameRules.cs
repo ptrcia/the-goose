@@ -16,8 +16,13 @@ public class GameRules : MonoBehaviour
     int finalCell = 62;
 
     [Header("Well Rule")]
-    PlayerMovement playerInWell = null;
     int playerInWellRemainingTurns = 0;
+    PlayerMovement playerInWell = null;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip audioClipDeath;
+    AudioSource audioSource;
+
 
     private void CheckGameObjects()
     {
@@ -26,6 +31,8 @@ public class GameRules : MonoBehaviour
             GetComponent<GameManager>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").
             GetComponent<TurnManager>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     public void CheckSpecialCell(PlayerMovement _playerMovement, GameObject player)
@@ -179,6 +186,8 @@ public class GameRules : MonoBehaviour
         }
         void Death()
         {
+            audioSource.clip = audioClipDeath;
+            audioSource.Play();
             if(_playerMovement.playerID == "Player 1")
             {
                 _playerMovement.currentCell = 68;

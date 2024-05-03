@@ -1,43 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject pausePanel;
 
-
-    //[SerializeField] Slider sliderMaster;
-    //[SerializeField] AudioMixer audioMixer;
-
     private void Start()
     {
-        //sliderMaster.value = PlayerPrefs.GetFloat("volumeMaster");
         ResumeGame();
-        AudioListener.pause = false; //important to say to unity to unpause music
-
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&& SceneManager.GetActiveScene().buildIndex != 0)
         {
             if (pausePanel.activeInHierarchy)
             {
                 pausePanel.SetActive(false);
-                //Cursor.lockState = CursorLockMode.Locked;
                 ResumeGame();
-                AudioListener.pause = false;
-
             }
             else
             {
                 pausePanel.SetActive(true);
-                //Cursor.lockState = CursorLockMode.None;
                 PauseGame();
-                AudioListener.pause = true;
             }
         }
     }
@@ -46,8 +34,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("YOU WON");
         PauseGame();
         winPanel.SetActive(true);
-        //pausa
-        //abrir canvas de final de juego
     }
     void PauseGame()
     {
@@ -65,10 +51,7 @@ public class GameManager : MonoBehaviour
             winPanel.SetActive(false);
         }
     }
-    public void volumeMaster(float volume)
-    {
-        //audioMixer.SetFloat("volumeMaster", volume);
-    }
+
     public void ReloadScene()
     {
         int actualScene = SceneManager.GetActiveScene().buildIndex;
@@ -77,4 +60,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(actualScene);
     }
 
+    public void URL() //Unity Method to include URL to click on
+    {
+        Application.OpenURL("https://ptrcia.github.io/porfolio/");
+    }
 }
