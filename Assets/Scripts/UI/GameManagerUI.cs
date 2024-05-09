@@ -76,7 +76,7 @@ public class GameManagerUI : MonoBehaviour
     public void CurrentTurnAnimation(RectTransform currentButton) 
     {
         currentButton.DOAnchorPos
-            (new Vector2(-10, currentButton.anchoredPosition.y), duration)
+            (new Vector2(-40, currentButton.anchoredPosition.y), duration)
         .SetEase(Ease.InBounce);
     }
     public void CurrentTurnAnimationClose(RectTransform currentButton)
@@ -84,6 +84,7 @@ public class GameManagerUI : MonoBehaviour
         currentButton.DOAnchorPos
             (new Vector2(94.4f, currentButton.anchoredPosition.y), duration)
             .SetEase(Ease.InBounce);
+        //-10
     }
 
     public void RulesButton()

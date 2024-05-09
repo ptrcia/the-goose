@@ -899,6 +899,8 @@ MonoBehaviour:
   canRoll: 1
   hasRolled: 0
   vectorTorque: {x: 0, y: 0, z: 0}
+  translucentMaterial: {fileID: 0}
+  opaqueMaterial: {fileID: 0}
 --- !u!65 &6698661422576059086
 BoxCollider:
   m_ObjectHideFlags: 0

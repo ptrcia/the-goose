@@ -45,17 +45,38 @@ public class TurnManager : MonoBehaviour
             clonePrefab.GetComponent<Renderer>().material.color = playerColor[i];
             clonePrefab.transform.localScale = new Vector3(5f, 0.01f, 5f);
             clonePrefab.transform.localPosition = new Vector3(0, 0.005f, 0);
-            string newID = "Player " + (i + 1).ToString();
-            clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
-            //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
-            clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+
+            if (PlayerPrefs.GetString("LanguageChosen") == "English")
+            {
+                string newID = "Player " + (i + 1).ToString();
+                clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
+                //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
+                clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+            }
+            else if(PlayerPrefs.GetString("LanguageChosen") == "Spanish")
+            {
+                string newID = "Jugador " + (i + 1).ToString();
+                clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
+                //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
+                clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+            }
+                
+
             #endregion
 
             #region Player Button
             cloneButtonPrefab = Instantiate(playerButtonPrefab, playerButtonStartPosition[i]);
             cloneButtonPrefab.GetComponent<Image>().color = new Color(playerColor[i].r, playerColor[i].g, playerColor[i].b, 1f);
-            string newIDButton = "Player " + (i + 1).ToString();
-            cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+            if (PlayerPrefs.GetString("LanguageChosen") == "English")
+            {
+                string newIDButton = "Player " + (i + 1).ToString();
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+            }
+            else if(PlayerPrefs.GetString("LanguageChosen") == "Spanish")
+            {
+                string newIDButton = "Jugador " + (i + 1).ToString();
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+            }
             cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             #endregion
         }

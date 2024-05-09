@@ -9,7 +9,6 @@ public class DucksPatrol : MonoBehaviour
     [SerializeField] Transform[] checkPoints;
     private NavMeshAgent agent;
 
-
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();

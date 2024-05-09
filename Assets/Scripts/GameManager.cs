@@ -72,9 +72,4 @@ public class GameManager : MonoBehaviour
         AudioListener.pause = true;
         SceneManager.LoadScene(actualScene);
     }
-
-    public void URL() //Unity Method to include URL to click on
-    {
-        Application.OpenURL("https://ptrcia.github.io/porfolio/");
-    }
 }

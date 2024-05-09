@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private GameObject startButton;
 
+    string sceneToLoad = "02-Classic";
+
     private void Update()
     {
         SettingsPlayers();
@@ -41,22 +43,18 @@ public class MainMenu : MonoBehaviour
             case "1":
                 numberPlayers = 1;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //Debug.Log("Ha selecionado modo juego "+optionPlayers+" jugador");
                 break;
             case "2":
                 numberPlayers = 2;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //Debug.Log("Ha selecionado modo juego " + optionPlayers + " jugador");
                 break;
             case "3":
                 numberPlayers = 3;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //Debug.Log("Ha selecionado modo juego " + optionPlayers + " jugador");
                 break;
             case "4":
                 numberPlayers = 4;
                 PlayerPrefs.SetInt("NumberPlayers", numberPlayers);
-                //Debug.Log("Ha selecionado modo juego " + optionPlayers + " jugador");
                 break;
         }
     }
@@ -69,35 +67,51 @@ public class MainMenu : MonoBehaviour
             case "Classic":
                 //cambiar el tablero y las reglas y supongo que ya la escena, no?
                 //Debug.Log("Has selecionado la tabla " + optionBoard);
+                sceneToLoad = "02-Classic";
                 break;
 
+            case "Test":
+                sceneToLoad = "SampleScene";
+                break;
         }
     }
     void SettingsLanguage()
     {
         string optionLanguage = getValueDropdownLanguage.GetSelectedOption();
+        string languageChosen = "";
+        //CREO QUE COMPROBAR QUQE EATS BIEN ???????????????????????
         switch (optionLanguage)
         {
             case "English":
                 //cosas
                 //Debug.Log("Has selecionado el idioma " + optionLanguage);
+                languageChosen = "English";
+                PlayerPrefs.SetString("LanguageChosen", languageChosen);
                 break;
             case "Spanish":
                 //cosas en español
                 //Debug.Log("Has selecionado el idioma " + optionLanguage);
+                languageChosen = "Spanish";
+                PlayerPrefs.SetString("LanguageChosen", languageChosen);
                 break;
-
         }
     }
 
     void LoadScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneToLoad);
     }
     private void FillScreenButton()
     {
         RectTransform rectTransform = startButton.GetComponent<RectTransform>();
         Vector2 screenSize = new Vector2(Screen.width*5, Screen.height*5);
-        rectTransform.DOSizeDelta(screenSize, 2f);
+        if (rectTransform != null)
+        {
+            rectTransform.DOSizeDelta(screenSize, 2f);
+        }
+    }
+    public void URL() //Unity Method to include URL to click on
+    {
+        Application.OpenURL("https://ptrcia.github.io/porfolio/");
     }
 }

@@ -55,14 +55,14 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator WaitForDiceRolled()
     {
-
+        /*
         
         //Custom number
         int diceResult=0;
         yield return new WaitUntil(() => UnityEngine.Input.GetKeyDown(KeyCode.Return));
         diceResult = input;
-
-        /*
+        */
+        
         //Roll the dice
 
         yield return new WaitUntil(() => throwDice.hasRolled);
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         } while (diceResult == 0);
 
         Debug.Log("Dice Result:" + diceResult);
-        */
+        
         //Movement
         
         for (int i = 0; i < diceResult; i++) 

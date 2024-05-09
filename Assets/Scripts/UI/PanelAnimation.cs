@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class PanelAnimation : MonoBehaviour
 {
+
     [SerializeField] private RectTransform panelTransform;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private Vector3 targetPosition;
@@ -27,6 +28,9 @@ public class PanelAnimation : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-        panelTransform.DOLocalMove(targetPosition, animationDuration).SetEase(Ease.OutBounce);
+        if(panelTransform!=null)
+        {
+            panelTransform.DOLocalMove(targetPosition, animationDuration).SetEase(Ease.OutBounce);
+        }
     }
 }
