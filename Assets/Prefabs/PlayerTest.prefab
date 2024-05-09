@@ -363,6 +363,7 @@ MonoBehaviour:
   movementCompleted: 1
   diceValue: 0
   playerID: 
+  audioClipMovement: {fileID: 8300000, guid: 130467b00891cb349883a72df0099607, type: 3}
 --- !u!54 &4553192611561098260
 Rigidbody:
   m_ObjectHideFlags: 0

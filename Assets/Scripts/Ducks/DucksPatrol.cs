@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class DucksPatrol : MonoBehaviour
-
 {
     [Header("Patrol")]
     [SerializeField] Transform[] checkPoints;
-
     private NavMeshAgent agent;
+
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -17,11 +17,10 @@ public class DucksPatrol : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(nameof(Patrol));
+        StartCoroutine(nameof(Patrol));     
     }
     IEnumerator Patrol()
     {
-
         #region Patrol Random
 
         Vector3 destination = transform.position;

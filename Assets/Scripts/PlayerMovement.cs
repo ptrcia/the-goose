@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] AudioClip audioClipMovement;
-    AudioSource audioSource;    
 
     private int input;
     private void Awake()
@@ -32,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
         dice = GameObject.FindGameObjectWithTag("Dice").GetComponent<Dice>();
         throwDice = GameObject.FindGameObjectWithTag("PhysicsDice").GetComponent<ThrowDice>();
         gameManagerUI = GameObject.FindGameObjectWithTag("GameManagerUI").GetComponent<GameManagerUI>();
-        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -86,8 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentCell++;
             transform.position = CellManager.instance.cells[currentCell].position;
-            audioSource.clip = audioClipMovement;
-            audioSource.Play();
+            AudioManager.instance.PlaySound(audioClipMovement);
             yield return new WaitForSeconds(0.05f);
             //StartMovementAnimation(); //Animation
             Debug.Log("From cell to cell: " + currentCell);

@@ -13,10 +13,21 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Slider sliderMusic;
     [SerializeField] Slider sliderSFX;
     [SerializeField] AudioMixer audioMixer;
-
+    [SerializeField] AudioSource MusicSource;
+    [SerializeField] AudioSource SFXSource;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+
         sliderMusic.onValueChanged.AddListener(volumeMusic);
         sliderMaster.onValueChanged.AddListener(volumeMaster);
         sliderSFX.onValueChanged.AddListener(volumeSFX);
@@ -28,6 +39,17 @@ public class AudioManager : MonoBehaviour
         sliderMaster.value = PlayerPrefs.GetFloat("volumeMaster", 0.75f);
         sliderMusic.value = PlayerPrefs.GetFloat("volumeMusic", 0.75f);
         sliderSFX.value = PlayerPrefs.GetFloat("volumeSFX", 0.75f);
+    }
+
+    public void PlaySound(AudioClip clipToPlay)
+    {
+        SFXSource.clip = clipToPlay;
+        SFXSource.PlayOneShot(clipToPlay);
+    }
+    public void PlayMusic(AudioClip clipToPlay)
+    {
+        MusicSource.clip = clipToPlay;
+        MusicSource.PlayOneShot(clipToPlay);
     }
 
     #region Volume Audio

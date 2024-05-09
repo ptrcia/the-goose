@@ -28,9 +28,7 @@ public class TurnManager : MonoBehaviour
     int rename = 1;
 
     [Header("Audio")]
-    [SerializeField]AudioClip audioClip;
-    AudioSource audioSource;
-    
+    [SerializeField]AudioClip audioClipRound;    
 
     PlayerMovement playerMovement;
     GameManagerUI gameManagerUI;
@@ -68,7 +66,6 @@ public class TurnManager : MonoBehaviour
             .GetComponent<GameManagerUI>();
         gameRules = GameObject.FindGameObjectWithTag("GameRules")
             .GetComponent<GameRules>();
-        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -105,7 +102,8 @@ public class TurnManager : MonoBehaviour
     IEnumerator PlayerTurn()
     {
         //Debug.Log("PLAYERTURN TE TOCA A TI: " + currentPlayer.GetComponent<PlayerMovement>().playerID);
-        while (currentPlayerIndex < players.Count)
+        while (currentPlayerIndex < players.Count && !GameManager.instance.pausePanel.activeInHierarchy)
+        //x
         {
             nextTurnPlayer = true;
             currentPlayer = players[currentPlayerIndex];
@@ -117,8 +115,9 @@ public class TurnManager : MonoBehaviour
             //Debug.Log("Current Player: " + currentPlayer.GetComponent<PlayerMovement>().playerID);
             //Debug.Log("Button Index: " + players.IndexOf(currentPlayer));
             //Debug.Log("Current Button: " + currentButton.name);
+
             Debug.Log("-------------------------- NEW TURN");
-            audioSource.PlayOneShot(audioClip);
+            AudioManager.instance.PlaySound(audioClipRound);
             
             Debug.Log("Turno del -> " + currentPlayer.GetComponent<PlayerMovement>().playerID);
             //Debug.Log("Con la etiqueta ->" + currentButton.name);

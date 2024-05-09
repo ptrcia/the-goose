@@ -20,9 +20,16 @@ public class GameRules : MonoBehaviour
     PlayerMovement playerInWell = null;
 
     [Header("Audio")]
+    [SerializeField] AudioClip audioClipBridge;
     [SerializeField] AudioClip audioClipDeath;
-    AudioSource audioSource;
-
+    [SerializeField] AudioClip audioClipGoose;
+    [SerializeField] AudioClip audioClipJail;
+    [SerializeField] AudioClip audioClipDice;
+    [SerializeField] AudioClip audioClipWell;
+    [SerializeField] AudioClip audioClipLab;
+    [SerializeField] AudioClip audioClipInnPeople;
+    [SerializeField] AudioClip audioClipInnOpen;
+    [SerializeField] AudioClip audioClipInnClose;
 
     private void CheckGameObjects()
     {
@@ -31,8 +38,6 @@ public class GameRules : MonoBehaviour
             GetComponent<GameManager>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").
             GetComponent<TurnManager>();
-        audioSource = GetComponent<AudioSource>();
-
     }
 
     public void CheckSpecialCell(PlayerMovement _playerMovement, GameObject player)
@@ -107,7 +112,8 @@ public class GameRules : MonoBehaviour
             if (cellOcaTransitions.ContainsKey(_playerMovement.currentCell))
             {
                 int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
-
+                AudioManager.instance.PlaySound(audioClipGoose);
+                Debug.Log("Aqui estoy: OCA");
                 _playerMovement.currentCell = destinationCell;
                 player.transform.position = CellManager.instance.cells[destinationCell].position;
                 turnManager.nextTurnPlayer = false;
@@ -120,6 +126,7 @@ public class GameRules : MonoBehaviour
         }
         void Bridge()
         {
+            AudioManager.instance.PlaySound(audioClipBridge);
             if (_playerMovement.currentCell == firstBridge)
             {
                 _playerMovement.currentCell = secondBridge;
@@ -136,10 +143,14 @@ public class GameRules : MonoBehaviour
         }
         void Inn()
         {
+            AudioManager.instance.PlaySound(audioClipInnOpen);
+            AudioManager.instance.PlaySound(audioClipInnPeople);
+            AudioManager.instance.PlaySound(audioClipInnClose);
             _playerMovement.noPlayableTurns++;
         }
         void Well()
         {
+            AudioManager.instance.PlaySound(audioClipWell);
             // Sum up 3 no playable turns
             _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 3;
             playerInWellRemainingTurns = 3;
@@ -158,6 +169,7 @@ public class GameRules : MonoBehaviour
         }
         void Labyrinth()
         {
+            AudioManager.instance.PlaySound(audioClipLab);
             _playerMovement.currentCell = 30;
             player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
             Well();
@@ -165,6 +177,7 @@ public class GameRules : MonoBehaviour
         }
         void Jail()
         {
+            AudioManager.instance.PlaySound(audioClipJail);
             _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 2;
             Debug.Log("No entra aqui?");
         }
@@ -172,12 +185,14 @@ public class GameRules : MonoBehaviour
         {
             if (_playerMovement.currentCell == firstDice)
             {
+                AudioManager.instance.PlaySound(audioClipDice);
                 _playerMovement.currentCell = secondDice;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
 
             }
             else if (_playerMovement.currentCell == secondDice)
             {
+                AudioManager.instance.PlaySound(audioClipDice);
                 _playerMovement.currentCell = firstDice;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
 
@@ -186,8 +201,7 @@ public class GameRules : MonoBehaviour
         }
         void Death()
         {
-            audioSource.clip = audioClipDeath;
-            audioSource.Play();
+            AudioManager.instance.PlaySound(audioClipDeath);
             if(_playerMovement.playerID == "Player 1")
             {
                 _playerMovement.currentCell = 68;
@@ -210,7 +224,6 @@ public class GameRules : MonoBehaviour
                 _playerMovement.currentCell = 71;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
                 _playerMovement.currentCell = 0;
-
             }
             else
             {
@@ -238,7 +251,7 @@ public class GameRules : MonoBehaviour
 
             CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
         }
-        IEnumerator GardenBackwards()
+        IEnumerator GardenBackwards()//corrutina
         {
             int difference = 0; //the difference beetween where the player is and the final cell
             Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);

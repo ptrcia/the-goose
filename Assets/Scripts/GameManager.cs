@@ -6,9 +6,21 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject winPanel;
-    [SerializeField] GameObject pausePanel;
+    public static GameManager instance;
 
+    [SerializeField] GameObject winPanel;
+    public GameObject pausePanel;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip audioClipWin;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     private void Start()
     {
         ResumeGame();
@@ -32,7 +44,8 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         Debug.Log("YOU WON");
-        PauseGame();
+        PauseGame();;
+        AudioManager.instance.PlaySound(audioClipWin);
         winPanel.SetActive(true);
     }
     void PauseGame()

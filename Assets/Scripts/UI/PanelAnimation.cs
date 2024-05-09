@@ -10,6 +10,8 @@ public class PanelAnimation : MonoBehaviour
     [SerializeField] private Vector3 targetPosition;
     [SerializeField] private float animationDuration = 1f;
 
+    [SerializeField] AudioClip audioBounce;
+
     private void Start()
     {
         panelTransform.localPosition = initialPosition;
@@ -19,8 +21,12 @@ public class PanelAnimation : MonoBehaviour
     {
         DOTween.Init();
 
-        gameObject.SetActive(true);
+        if (!gameObject.activeInHierarchy)
+        {
+            AudioManager.instance.PlaySound(audioBounce);
+        }
 
+        gameObject.SetActive(true);
         panelTransform.DOLocalMove(targetPosition, animationDuration).SetEase(Ease.OutBounce);
     }
 }

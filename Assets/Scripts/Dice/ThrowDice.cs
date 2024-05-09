@@ -16,6 +16,10 @@ public class ThrowDice : MonoBehaviour
     bool diceResultUpdated = false;
     int diceResult = 0;
 
+    [Header("Material")]
+    public Material translucentMaterial;
+    public Material opaqueMaterial;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -25,8 +29,14 @@ public class ThrowDice : MonoBehaviour
         diceFaces = GetComponentsInChildren<DiceRaycast>();
     }
 
+    private void Start()
+    {
+        ChangeMaterial(gameObject, translucentMaterial);
+    }
+
     void FixedUpdate()
     {
+        
         if (rigidbody.velocity.magnitude != 0 && clickedOn) 
         {
             hasRolled = true;
@@ -47,6 +57,10 @@ public class ThrowDice : MonoBehaviour
             diceResultUpdated = true;
             Debug.Log("RESULTADO = " + result);
             Debug.Log(diceResultUpdated);
+            ChangeMaterial(gameObject, translucentMaterial);    
+        }else if(hasRolled == false)
+        {
+            ChangeMaterial(gameObject, translucentMaterial);
         }
     }
 
@@ -65,7 +79,7 @@ public class ThrowDice : MonoBehaviour
             rigidbody.AddForce(Vector3.up * resultRandomForce, ForceMode.Impulse);
 
             //Debug.Log("Numero random de chances: "+resultRandomNumberofAxis);
-            if (resultRandomNumberofAxis >= 1 && resultRandomNumberofAxis <= 5) //0.5% chances
+            if (resultRandomNumberofAxis >= 1 && resultRandomNumberofAxis <= 5) //0.4% chances
             {
                 int resultValue = Random1Axis();
                 if (resultValue == 1)
@@ -81,7 +95,7 @@ public class ThrowDice : MonoBehaviour
                     vectorTorque = new Vector3(0, 0, z);
                 }
             }
-            else if (resultRandomNumberofAxis >= 6 && resultRandomNumberofAxis <= 100) //10% chances 
+            else if (resultRandomNumberofAxis >= 6 && resultRandomNumberofAxis <= 100) //0.6% chances 
             {
                 int resultValue = Random1Axis();
                 if (resultValue == 1)
@@ -103,9 +117,16 @@ public class ThrowDice : MonoBehaviour
             }
    
             rigidbody.AddTorque(vectorTorque * resultRandomForce, ForceMode.Impulse);
-            //Debug.Log(vectorTorque);
             clickedOn = true;
         }
+    }
+    private void OnMouseOver()
+    {
+        ChangeMaterial(gameObject, opaqueMaterial);
+    }
+    private void OnMouseExit()
+    {
+        //ChangeMaterial(gameObject, translucentMaterial);       
     }
     #endregion
 
@@ -146,6 +167,23 @@ public class ThrowDice : MonoBehaviour
         int randomnumber;
         randomnumber = Random.Range(-1, 2);
         return randomnumber;
+    }
+    #endregion
+
+    #region Opacity
+    void ChangeMaterial(GameObject obj, Material material)
+    {
+        
+        Renderer renderer = obj.GetComponent<Renderer>();
+
+        if (renderer != null)
+        {
+            renderer.material = material;
+        }
+        else
+        {
+            Debug.LogWarning("The object does not have a Renderer component.");
+        }
     }
     #endregion
 }
