@@ -10,10 +10,13 @@ public class GameRules : MonoBehaviour
 
     int firstBridge = 5;
     int secondBridge = 11;
+    public GameObject bridgeRime;
 
     int firstDice = 25;
     int secondDice = 52;
     int finalCell = 62;
+    public GameObject diceRime;
+    public GameObject gooseRime;
 
     [Header("Well Rule")]
     int playerInWellRemainingTurns = 0;
@@ -113,7 +116,7 @@ public class GameRules : MonoBehaviour
             {
                 int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
                 AudioManager.instance.PlaySound(audioClipGoose);
-                Debug.Log("Aqui estoy: OCA");
+                
                 _playerMovement.currentCell = destinationCell;
                 player.transform.position = CellManager.instance.cells[destinationCell].position;
                 turnManager.nextTurnPlayer = false;
@@ -202,24 +205,24 @@ public class GameRules : MonoBehaviour
         void Death()
         {
             AudioManager.instance.PlaySound(audioClipDeath);
-            if(_playerMovement.playerID == "Player 1")
+            if(_playerMovement.playerID == "Player 1" || _playerMovement.playerID == "Jugador 1")
             {
                 _playerMovement.currentCell = 68;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
                 _playerMovement.currentCell = 0;
-            }else if(_playerMovement.playerID == "Player 2")
+            }else if(_playerMovement.playerID == "Player 2" || _playerMovement.playerID == "Jugador 2")
             {
                 _playerMovement.currentCell = 69;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell ].position;
                 _playerMovement.currentCell = 0;
             }
-            else if (_playerMovement.playerID == "Player 3")
+            else if (_playerMovement.playerID == "Player 3" || _playerMovement.playerID == "Jugador 3")
             {
                 _playerMovement.currentCell = 70;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
                 _playerMovement.currentCell = 0;
             }
-            else if (_playerMovement.playerID == "Player 4")
+            else if (_playerMovement.playerID == "Player 4" || _playerMovement.playerID == "Jugador 4")
             {
                 _playerMovement.currentCell = 71;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
@@ -227,7 +230,7 @@ public class GameRules : MonoBehaviour
             }
             else
             {
-                Debug.Log("No es el ID");
+                Debug.Log("no ID");
             }
 
         }

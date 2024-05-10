@@ -74,7 +74,7 @@ public class LanguageClassic : MonoBehaviour
             gooseAddicional.text = "If you land on this cell, teleport to the next goose cell and re-roll.";
             bidgeAddicional.text = "If you land on this cell you teleport to the other bridge on the board either in front of you or behind you and re-roll.";
             innAddicional.text = "If you fall in this cell, you lose a turn.";
-            wellAddicional.text = "If you land on this cell, you CANNOT play again until another player passes through that cell.";
+            wellAddicional.text = "If you land on this cell, you CANNOT play again until another player passes through that cell or two turns were played";
             labyrinthAddicional.text = "If you fall on this cell, you are forced to move back to cell 30.";
             dicesAddicional.text = "If you land on this cell, you teleport to the other die cell on the board either in front of you or behind you and re-roll.";
             jailAddicional.text = "If you fall into this cell, you have to stay two turns without playing.";
@@ -116,7 +116,7 @@ public class LanguageClassic : MonoBehaviour
             gooseAddicional.text = "Si caes en esta casilla, te mueves a la siguiente oca y tiras de nuevo.";
             bidgeAddicional.text = "Si caes en esta casilla, te mueves al siguiente puente (esté delante o detrás) y vuelves a tirar.";
             innAddicional.text = "Si caes en esta casilla, pierdes un turno.";
-            wellAddicional.text = "Si caes en esta casilla, NO puedes vovler a jugar hasta que otro jugador pase por esa casilla.";
+            wellAddicional.text = "Si caes en esta casilla, NO puedes volver a jugar hasta que otro jugador pase por esa casilla o hayan pasado dos turnos";
             labyrinthAddicional.text = "Si caes en esta casilla, te mueves a las casilla 30.";
             dicesAddicional.text = "Si caes en esta casilla, te teletrasportas a la otra casilla de dado (esté delante o detrás) y vuelves a tirar.";
             jailAddicional.text = "Si caes en esra casilla, pierdes dos turnos.";

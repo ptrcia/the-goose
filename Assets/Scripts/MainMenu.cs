@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.EventSystems;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GetValueDropdown getValueDropdownPlayers;
@@ -15,6 +15,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject startButton;
 
     string sceneToLoad = "02-Classic";
+    [SerializeField] TMP_Dropdown dropdownBoard;
+    List<string> options = new List<string> { "Test" };
+
+    [SerializeField] TMP_InputField inputField;
+    [SerializeField] TextMeshProUGUI messageCode;
+
+    private void Start()
+    {
+        inputField.onEndEdit.AddListener(Code);
+    }
 
     private void Update()
     {
@@ -65,8 +75,6 @@ public class MainMenu : MonoBehaviour
         switch (optionBoard)
         {
             case "Classic":
-                //cambiar el tablero y las reglas y supongo que ya la escena, no?
-                //Debug.Log("Has selecionado la tabla " + optionBoard);
                 sceneToLoad = "02-Classic";
                 break;
 
@@ -79,20 +87,45 @@ public class MainMenu : MonoBehaviour
     {
         string optionLanguage = getValueDropdownLanguage.GetSelectedOption();
         string languageChosen = "";
-        //CREO QUE COMPROBAR QUQE EATS BIEN ???????????????????????
         switch (optionLanguage)
         {
             case "English":
-                //cosas
-                //Debug.Log("Has selecionado el idioma " + optionLanguage);
                 languageChosen = "English";
                 PlayerPrefs.SetString("LanguageChosen", languageChosen);
                 break;
             case "Spanish":
-                //cosas en español
-                //Debug.Log("Has selecionado el idioma " + optionLanguage);
                 languageChosen = "Spanish";
                 PlayerPrefs.SetString("LanguageChosen", languageChosen);
+                break;
+        }
+    }
+
+    public void Code(string code)
+    {
+        switch(code)
+        {
+            case "Test":
+                //dropdownBoard.AddOptions(options);
+
+                if (PlayerPrefs.GetString("LanguageChosen") == "English")
+                {
+                    messageCode.text = "You unlocked a new board!";
+                }
+                else if (PlayerPrefs.GetString("LanguageChosen") == "Spanish")
+                {
+                    messageCode.text = "Has desbloqueado un nuevo tablero!";
+                }
+                    
+                break;
+            default:
+                if (PlayerPrefs.GetString("LanguageChosen") == "English")
+                {
+                    messageCode.text = "Wrong Code";
+                }
+                else if (PlayerPrefs.GetString("LanguageChosen") == "Spanish")
+                {
+                    messageCode.text = "Código erróneo";
+                }
                 break;
         }
     }
@@ -110,8 +143,9 @@ public class MainMenu : MonoBehaviour
             rectTransform.DOSizeDelta(screenSize, 2f);
         }
     }
-    public void URL() //Unity Method to include URL to click on
+    public void URL(string URL) //Unity Method to include URL to click on
     {
-        Application.OpenURL("https://ptrcia.github.io/porfolio/");
+        Application.OpenURL(URL);
     }
+
 }

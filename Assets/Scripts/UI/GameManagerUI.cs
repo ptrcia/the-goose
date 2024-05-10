@@ -26,12 +26,17 @@ public class GameManagerUI : MonoBehaviour
     Vector2 screenSizeZero;
     public float duration = 1f;
 
+    GameRules gameRules;
+
     private void Awake()
     {
         dice = GameObject.FindGameObjectWithTag("Dice").
             GetComponent<Dice>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").
             GetComponent<TurnManager>();
+
+        gameRules = GameObject.FindGameObjectWithTag("GameRules").
+            GetComponent<GameRules>();
 
         initialRectTransform = startButton.GetComponent<RectTransform>();
         roundTransform = newRoundPanel.GetComponent<RectTransform>();
@@ -99,6 +104,13 @@ public class GameManagerUI : MonoBehaviour
             isOpen = false;
             rulesButton.DOAnchorPos(new Vector2(originalLeft, rulesButtonOriginalTransform.anchoredPosition.y), duration).SetEase(Ease.InBounce);
         }  
+    }
+
+    public void Rhymes()
+    {
+        gameRules.bridgeRime.SetActive(true);
+        //animation
+        gameRules.bridgeRime.SetActive(false);
     }
 
     private void ClearScreenButton()

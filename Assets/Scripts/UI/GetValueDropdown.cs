@@ -12,7 +12,7 @@ public class GetValueDropdown : MonoBehaviour
     {
         int pickedEntryIndex = dropdown.value;
         selectedOption = dropdown.options[pickedEntryIndex].text;
-        Debug.Log(selectedOption);
+        //Debug.Log(selectedOption);
     }
     public string GetSelectedOption()
     {

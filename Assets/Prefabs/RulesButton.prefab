@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 8114150212168833707}
+  audioClipClick: {fileID: 0}
 --- !u!1 &394562633192475329
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 3216944100659463301}
+  audioClipClick: {fileID: 0}
 --- !u!1 &1256597049659132233
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +338,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: If you land on this cell, you CANNOT play again until another player passes
-    through that cell.
+    through that cell or two turns passes.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -616,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 2512014755204277803}
+  audioClipClick: {fileID: 0}
 --- !u!1 &1791713269504115550
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,6 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 7783684735939744365}
+  audioClipClick: {fileID: 0}
 --- !u!1 &2379963027420766487
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,8 +969,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -138, y: -346}
-  m_SizeDelta: {x: 82.3, y: 282.85}
+  m_AnchoredPosition: {x: -146, y: -346}
+  m_SizeDelta: {x: 108.26, y: 282.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7175121925595267292
 CanvasRenderer:
@@ -1217,6 +1221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 8877603127667622310}
+  audioClipClick: {fileID: 0}
 --- !u!1 &2893022521735950440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 4619866894129892120}
+  audioClipClick: {fileID: 0}
 --- !u!1 &3628011679283453290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,6 +3174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 2379963027420766487}
+  audioClipClick: {fileID: 0}
 --- !u!1 &6319992855935036639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,6 +3310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 4768535013635751221}
+  audioClipClick: {fileID: 0}
 --- !u!1 &6403818595946864056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3370,8 +3378,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rules
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6053a70ab94b1c43aaa7c1c81614161, type: 2}
+  m_sharedMaterial: {fileID: -6032965703780481585, guid: c6053a70ab94b1c43aaa7c1c81614161,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4394,6 +4403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specificRule: {fileID: 1545736394433183172}
+  audioClipClick: {fileID: 0}
 --- !u!1 &8643028966771584865
 GameObject:
   m_ObjectHideFlags: 0

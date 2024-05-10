@@ -17,6 +17,9 @@ public class LanguageMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI board;
     [SerializeField] TextMeshProUGUI startGame;
 
+    [SerializeField] TextMeshProUGUI code;
+    [SerializeField] TextMeshProUGUI introduction;
+
     void Update()
     {
         CheckLanguage();
@@ -36,6 +39,8 @@ public class LanguageMenu : MonoBehaviour
             players.text = "Number of players";
             board.text = "Type of board";
             startGame.text = "Let's go!";
+            code.text = "Code: ";
+            introduction.text = "Hi!\r\n This game is in development. You will find bugs and unfinished things. I will keep updating it and I aim to finish it by the end of august 2024.\r\nHere you can follow the updates----->\r\nHere you can write me if you find any bug->";
         }
         else if (PlayerPrefs.GetString("LanguageChosen") == "Spanish")
         {
@@ -49,6 +54,8 @@ public class LanguageMenu : MonoBehaviour
             players.text = "Número de jugadores";
             board.text = "Tipo de tablero";
             startGame.text = "¡Allá vamos!";
+            code.text = "Código: ";
+            introduction.text = "¡Hola!\r\nEste juego está en desarrollo. Os encontraréis fallos y cosas inacabadas. Iré actualizándolo y pretendo acabarlo para final de agosto 2024.\r\nAquí podéis seguir las actualizaciones->\r\nAquí me podéis escribir si encontrais cualquier error->";
 
         }
     }
