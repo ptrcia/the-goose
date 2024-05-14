@@ -7,10 +7,10 @@ public class GameRules : MonoBehaviour
 {
     GameManager gameManager;
     TurnManager turnManager;
+    GameManagerUI gameManagerUI;
 
     int firstBridge = 5;
     int secondBridge = 11;
-    public GameObject bridgeRime;
 
     int firstDice = 25;
     int secondDice = 52;
@@ -41,6 +41,9 @@ public class GameRules : MonoBehaviour
             GetComponent<GameManager>();
         turnManager = GameObject.FindGameObjectWithTag("TurnManager").
             GetComponent<TurnManager>();
+        gameManagerUI = GameObject.
+            FindGameObjectWithTag("GameManagerUI").
+            GetComponent<GameManagerUI>();
     }
 
     public void CheckSpecialCell(PlayerMovement _playerMovement, GameObject player)
@@ -114,6 +117,7 @@ public class GameRules : MonoBehaviour
 
             if (cellOcaTransitions.ContainsKey(_playerMovement.currentCell))
             {
+                gameManagerUI.StartAnimatingGooseRhymes();
                 int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
                 AudioManager.instance.PlaySound(audioClipGoose);
                 
@@ -130,6 +134,7 @@ public class GameRules : MonoBehaviour
         void Bridge()
         {
             AudioManager.instance.PlaySound(audioClipBridge);
+            gameManagerUI.StartAnimatingBridgeRhymes();
             if (_playerMovement.currentCell == firstBridge)
             {
                 _playerMovement.currentCell = secondBridge;
@@ -186,6 +191,7 @@ public class GameRules : MonoBehaviour
         }
         void Dices()
         {
+            gameManagerUI.StartAnimatingDiceRhymes();
             if (_playerMovement.currentCell == firstDice)
             {
                 AudioManager.instance.PlaySound(audioClipDice);

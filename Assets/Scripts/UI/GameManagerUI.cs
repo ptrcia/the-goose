@@ -17,7 +17,6 @@ public class GameManagerUI : MonoBehaviour
     public bool isOpen = false;
 
     [Header("Other")]
-    TurnManager turnManager;
     [SerializeField] GameObject startButton;
     [SerializeField] GameObject newRoundPanel;
     [SerializeField] Vector3 targetPosition;
@@ -26,6 +25,16 @@ public class GameManagerUI : MonoBehaviour
     Vector2 screenSizeZero;
     public float duration = 1f;
 
+    [Header ("Rhymes")]
+    [SerializeField] Vector3 targetRhymesPosition;
+    [SerializeField] GameObject bridge;
+    [SerializeField] GameObject goose;
+    [SerializeField] GameObject dices;
+    RectTransform initialGooseRhymeRectTransform;
+    RectTransform initialDiceRhymeRectTransform;
+    RectTransform initialBridgeRhymeRectTransform;
+
+    TurnManager turnManager;
     GameRules gameRules;
 
     private void Awake()
@@ -40,6 +49,10 @@ public class GameManagerUI : MonoBehaviour
 
         initialRectTransform = startButton.GetComponent<RectTransform>();
         roundTransform = newRoundPanel.GetComponent<RectTransform>();
+        initialGooseRhymeRectTransform = goose.GetComponent<RectTransform>();    
+        initialDiceRhymeRectTransform = dices.GetComponent<RectTransform>();
+        initialBridgeRhymeRectTransform = bridge.GetComponent<RectTransform>();
+
         startButton.SetActive(true);
         ClearScreenButton();
     }
@@ -105,13 +118,54 @@ public class GameManagerUI : MonoBehaviour
             rulesButton.DOAnchorPos(new Vector2(originalLeft, rulesButtonOriginalTransform.anchoredPosition.y), duration).SetEase(Ease.InBounce);
         }  
     }
-
-    public void Rhymes()
+    #region Rhymes
+    public void StartAnimatingBridgeRhymes()
     {
-        gameRules.bridgeRime.SetActive(true);
-        //animation
-        gameRules.bridgeRime.SetActive(false);
+        StartCoroutine(nameof(BridgeRhymes));
     }
+    public void StartAnimatingGooseRhymes()
+    {
+        StartCoroutine(nameof(GooseRhymes));
+    }
+    public void StartAnimatingDiceRhymes()
+    {
+        StartCoroutine(nameof(DiceRhymes));
+    }
+    IEnumerator BridgeRhymes()
+    {
+        bridge.SetActive(true);
+        initialBridgeRhymeRectTransform.DOLocalMove(targetRhymesPosition, duration)
+            .SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(3);
+        initialBridgeRhymeRectTransform.DOLocalMove(new Vector3(0, 800, 0), duration)
+            .SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(1);
+        bridge.SetActive(false);
+    }
+    IEnumerator GooseRhymes()
+    {
+        goose.SetActive(true);
+        initialGooseRhymeRectTransform.DOLocalMove(targetRhymesPosition, duration)
+            .SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(3);
+        initialGooseRhymeRectTransform.DOLocalMove(new Vector3(0, 800, 0), duration)
+            .SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(1);
+        goose.SetActive(false);
+    }
+    IEnumerator DiceRhymes()
+    {
+        dices.SetActive(true);
+        initialDiceRhymeRectTransform.DOLocalMove(targetRhymesPosition, duration)
+            .SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(3);
+        initialDiceRhymeRectTransform.DOLocalMove(new Vector3(0, 800, 0), duration)
+            .SetEase(Ease.OutBounce);
+        yield return new WaitForSeconds(1);
+        dices.SetActive(false);
+    }
+
+    #endregion
 
     private void ClearScreenButton()
     {

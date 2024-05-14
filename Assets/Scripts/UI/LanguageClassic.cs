@@ -81,16 +81,16 @@ public class LanguageClassic : MonoBehaviour
             deathAddicional.text = "If you fall in this cell, go back to the start.";
             gardenAddicional.text = "It is necessary to score the right number of points to enter the final cell, in case of exceeding the number of points, you go back as many cells as the number you have exceeded.";
 
-            goose.text = "";
-            bridge.text = "";
-            dice.text = "";
+            goose.text = "From goose to goose \r\nI move as I choose";
+            bridge.text = "From bidge to bridge\r\n come see if I miss";
+            dice.text = "From dice to dice\r\nI slide and get by";
 
-            reload.text = "Reload";
+            reload.text = "Restart";
             exit.text = "Exit";
             mainmenu.text = "Main Menu";
-            resume.text = "Resume";
+            resume.text = "Continue";
 
-            reloadWin.text = "Reload";
+            reloadWin.text = "Another one!";
             exitWin.text = "Exit";
             mainmenuWin.text = "Main Menu";
 
@@ -98,7 +98,7 @@ public class LanguageClassic : MonoBehaviour
             SFX.text = "Sound Effects";
 
             round.text = "New Round!";
-            win.text = "Ypu win!";
+            win.text = "You win!";
         }
         else if (PlayerPrefs.GetString("LanguageChosen") == "Spanish")
         {
@@ -123,16 +123,16 @@ public class LanguageClassic : MonoBehaviour
             deathAddicional.text = "Si caes en esta casilla, vuelves al principio.";
             gardenAddicional.text = "Es necesario sacar el numero exacto para entrar a la casilla final, en el caso de sobrepsasar, retrocedes tantas casillas como número te hayas sobrepasado.";
 
-            goose.text = "From goose to goose \r\nI move as I choose";
-            bridge.text = "From bidge to bridge\r\n come see if I miss";
-            dice.text = "From dice to dice\r\nIi slide and get by";
+            goose.text = "De oca a oca \r\nY tiro porque me toca";
+            bridge.text = "De puente a puente\r\n y tiro porque me lleva la corriente";
+            dice.text = "De dado a dado \r\n y tiro porque me ha tocado";
 
             reload.text = "Nueva Partida";
             exit.text = "Salir";
             mainmenu.text = "Menú Principal";
             resume.text = "Continuar";
 
-            reloadWin.text = "Nueva Partida";
+            reloadWin.text = "¡Otra más!";
             exitWin.text = "Salir";
             mainmenuWin.text = "Menú Principal";
 
