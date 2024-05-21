@@ -20,7 +20,7 @@ public class PanelAnimation : MonoBehaviour
 
     public void AnimatePanel()
     {
-        DOTween.Init();
+        //DOTween.Init();
 
         if (!gameObject.activeInHierarchy)
         {

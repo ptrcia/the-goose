@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         inputField.onEndEdit.AddListener(Code);
     }
 
@@ -35,9 +36,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        Debug.Log("Empezando a empezar");
         FillScreenButton();
         float delay = 1f;
-        Invoke("LoadScene", delay);
+        Invoke(nameof(LoadScene), delay);
+        //SceneManager.LoadScene("02-Classic");
+        //LoadScene();
+        Debug.Log("Scene to load: " + sceneToLoad);
     }
     public void Quit()
     {
@@ -132,8 +137,11 @@ public class MainMenu : MonoBehaviour
 
     void LoadScene()
     {
+        Debug.Log("Encima del load");
         SceneManager.LoadScene(sceneToLoad);
+        Debug.Log("Debajo del load");
     }
+
     private void FillScreenButton()
     {
         RectTransform rectTransform = startButton.GetComponent<RectTransform>();

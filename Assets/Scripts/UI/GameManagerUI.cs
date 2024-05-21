@@ -47,6 +47,7 @@ public class GameManagerUI : MonoBehaviour
         gameRules = GameObject.FindGameObjectWithTag("GameRules").
             GetComponent<GameRules>();
 
+        
         initialRectTransform = startButton.GetComponent<RectTransform>();
         roundTransform = newRoundPanel.GetComponent<RectTransform>();
         initialGooseRhymeRectTransform = goose.GetComponent<RectTransform>();    

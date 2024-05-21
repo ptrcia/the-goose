@@ -51,6 +51,23 @@ public class LanguageClassic : MonoBehaviour
     [SerializeField] TextMeshProUGUI round;
     [SerializeField] TextMeshProUGUI win;
 
+    [SerializeField] TMP_Text textMeshProComponent;  // Referencia a tu componente TextMeshPro
+    [SerializeField] TMP_FontAsset otherFont;          // La nueva fuente que quieres usar
+    [SerializeField] TMP_FontAsset normalFont;
+    void Start()
+    {
+        // Verifica que los componentes no sean nulos
+        if (textMeshProComponent != null && normalFont != null)
+        {
+            // Cambia la fuente
+            textMeshProComponent.font = normalFont;
+        }
+        else
+        {
+            Debug.LogError("Asegúrate de que textMeshProComponent y newFont estén asignados.");
+        }
+    }
+
     void Update()
     {
         CheckLanguage();
@@ -60,6 +77,8 @@ public class LanguageClassic : MonoBehaviour
     {
         if (PlayerPrefs.GetString("LanguageChosen") == "English")
         {
+            textMeshProComponent.font = normalFont;
+            //title.font = new Font()
             title.text = "Rules";
             gooseRules.text = "The Goose";
             bridge.text = "The Bridge";
@@ -102,6 +121,7 @@ public class LanguageClassic : MonoBehaviour
         }
         else if (PlayerPrefs.GetString("LanguageChosen") == "Spanish")
         {
+            textMeshProComponent.font = otherFont;
             title.text = "Reglas";
             gooseRules.text = "La Oca";
             bridgeRules.text = "El Puente";
@@ -135,7 +155,7 @@ public class LanguageClassic : MonoBehaviour
             reloadWin.text = "¡Otra más!";
             exitWin.text = "Salir";
             mainmenuWin.text = "Menú Principal";
-
+            s
             music.text = "Música";
             SFX.text = "Efectos de sonido";
 

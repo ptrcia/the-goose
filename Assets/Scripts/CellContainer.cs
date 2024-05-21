@@ -11,7 +11,7 @@ public class CellContainer : MonoBehaviour
     public List<GameObject> playersObjectsInCell = new List<GameObject>();
 
     PlayerMovement playerMovementCtrl;
-    /*
+    
     private void OnCollisionEnter(Collision collision)
     {
         playerMovementCtrl = collision.gameObject.GetComponent<PlayerMovement>();
@@ -53,5 +53,5 @@ public class CellContainer : MonoBehaviour
             Debug.Log("Null: collision.gameObject in OnCollisionExit.");
         }
     }
-    */
+    
 }
