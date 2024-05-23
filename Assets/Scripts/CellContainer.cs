@@ -11,17 +11,23 @@ public class CellContainer : MonoBehaviour
     public List<GameObject> playersObjectsInCell = new List<GameObject>();
 
     PlayerMovement playerMovementCtrl;
-    
+    /*
     private void OnCollisionEnter(Collision collision)
     {
+        //si estas en la lista no te meto en la lista
         playerMovementCtrl = collision.gameObject.GetComponent<PlayerMovement>();
 
         if (collision.gameObject.CompareTag("Player") &&  collision.gameObject != null)
         {
+            Debug.Log("Entrado");
             currentPlayersInCell++;
-            playersObjectsInCell.Add(collision.gameObject);
-            Debug.Log("Enter List  of the "+currentPlayersInCell+" players in " + gameObject.name + ": " + string.Join(", ", playersInCell));
-            playerMovementCtrl.CellArragement(currentPlayersInCell, playersObjectsInCell);
+            if (!playersObjectsInCell.Contains(collision.gameObject))
+            {
+                playersObjectsInCell.Add(collision.gameObject);
+                Debug.Log("Enter List  of the " + currentPlayersInCell + " players in " + gameObject.name + ": " + string.Join(", ", playersInCell));
+                playerMovementCtrl.CellArragement(currentPlayersInCell, playersObjectsInCell);
+                Debug.Log("CUENTOS JUGADORES HAY: " + playersObjectsInCell.Count);
+            }
         }
         else if(collision.gameObject != null)
         {
@@ -34,24 +40,31 @@ public class CellContainer : MonoBehaviour
         //Debug.Log("THE PLAYER " + (collision.gameObject.GetComponent<PlayerMovement>().playerID).ToString() + " OUT FROM THE CELL");
         if (collision.gameObject.CompareTag("Player") && collision.gameObject !=null)
         {
+            playersObjectsInCell.Remove(collision.gameObject);
             currentPlayersInCell--;
+            Debug.Log("Exit List of the " + currentPlayersInCell + " players in " + gameObject.name + ": " + string.Join(", ", playersInCell));
+
+
             if (currentPlayersInCell > 0)
             {
-                playersObjectsInCell.Remove(collision.gameObject);
-                Debug.Log("Exit List of the " + currentPlayersInCell + " players in " + gameObject.name + ": " + string.Join(", ", playersInCell));
                 playerMovementCtrl.CellArragement(currentPlayersInCell, playersObjectsInCell);
-                //Debug.Log("OUT");
             }
             else
             {
                 //Debug.Log("NO MORE PLAYERS TO ARRANGE");
-            }
-            
+            }          
         }
         else if (collision.gameObject == null)
         {
             Debug.Log("Null: collision.gameObject in OnCollisionExit.");
         }
     }
-    
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Nombre de la ficha: " + collision.gameObject.GetComponent<PlayerMovement>().playerID);
+        }
+    }*/
+
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,17 +9,21 @@ public class TurnManager : MonoBehaviour
 {
     public bool nextTurnPlayer;
     public int currentPlayerIndex = 0;
+
     [Header("PlayerPrefab")]
     [SerializeField] GameObject playerPrefab;
     [SerializeField] Transform[] playerStartPosition;
     [SerializeField] Color[] playerColor;
+
     [Header("PlayerButtonPrefab")]
     public GameObject cloneButtonPrefab;
     [SerializeField] GameObject playerButtonPrefab;
     [SerializeField] Transform[] playerButtonStartPosition;
+
     [Header("PlayerList")]
     public GameObject currentPlayer;
     public List<GameObject> players = new List<GameObject>();
+
     [Header("ButtonList")]
     public GameObject currentButton;
     RectTransform currentButtonRectTransform;
@@ -52,6 +56,8 @@ public class TurnManager : MonoBehaviour
                 clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
                 //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
                 clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+
             }
             else if(PlayerPrefs.GetString("LanguageChosen") == "Spanish")
             {
@@ -59,23 +65,43 @@ public class TurnManager : MonoBehaviour
                 clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
                 //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
                 clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
-            }
-                
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
 
+            }
+            else if (PlayerPrefs.GetString("LanguageChosen") == "Japanese")
+            {
+                //TENGO PENDIENTE ESTO
+                string newID = "-" + (i + 1).ToString();
+                clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
+                //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
+                clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+            }
             #endregion
 
             #region Player Button
             cloneButtonPrefab = Instantiate(playerButtonPrefab, playerButtonStartPosition[i]);
             cloneButtonPrefab.GetComponent<Image>().color = new Color(playerColor[i].r, playerColor[i].g, playerColor[i].b, 1f);
+
             if (PlayerPrefs.GetString("LanguageChosen") == "English")
             {
                 string newIDButton = "Player " + (i + 1).ToString();
                 cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+
             }
             else if(PlayerPrefs.GetString("LanguageChosen") == "Spanish")
             {
                 string newIDButton = "Jugador " + (i + 1).ToString();
                 cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+
+            }
+            else if (PlayerPrefs.GetString("LanguageChosen") == "Japanese")
+            {//TENGO PENDIENTE ESTO
+                string newIDButton = "-" + (i + 1).ToString();
+                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
             }
             cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             #endregion

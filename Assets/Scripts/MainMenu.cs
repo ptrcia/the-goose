@@ -102,6 +102,10 @@ public class MainMenu : MonoBehaviour
                 languageChosen = "Spanish";
                 PlayerPrefs.SetString("LanguageChosen", languageChosen);
                 break;
+            case "Japanese":
+                languageChosen = "Japanese";
+                PlayerPrefs.SetString("LanguageChosen", languageChosen);
+                break;
         }
     }
 
