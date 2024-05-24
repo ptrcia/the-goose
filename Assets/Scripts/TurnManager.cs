@@ -71,7 +71,9 @@ public class TurnManager : MonoBehaviour
             else if (PlayerPrefs.GetString("LanguageChosen") == "Japanese")
             {
                 //TENGO PENDIENTE ESTO
-                string newID = "-" + (i + 1).ToString();
+                string newID = "- " + (i + 1).ToString();
+                //選手
+                //プレーヤー
                 clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
                 //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
                 clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
@@ -99,7 +101,7 @@ public class TurnManager : MonoBehaviour
             }
             else if (PlayerPrefs.GetString("LanguageChosen") == "Japanese")
             {//TENGO PENDIENTE ESTO
-                string newIDButton = "-" + (i + 1).ToString();
+                string newIDButton = "- " + (i + 1).ToString();
                 cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
                 //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
             }

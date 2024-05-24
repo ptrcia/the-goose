@@ -119,9 +119,9 @@ public class LanguageClassic : MonoBehaviour
         TextMeshProUGUI[] textComponents = {
             title, gooseRules, bridgeRules, innRules, wellRules, labyrinthRules, dicesRules, jailRules, deathRules, gardenRules,  
             goose, bridge, dice,
-            reload, exit, mainmenu, resume,
-            reloadWin, exitWin, mainmenuWin,
-            music, SFX,
+            pause, reload, exit, mainmenu, resume,
+            textWin, reloadWin, exitWin, mainmenuWin,
+            master, music, SFX,
             round, win
         };
 

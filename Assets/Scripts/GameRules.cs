@@ -15,6 +15,7 @@ public class GameRules : MonoBehaviour
     int firstDice = 25;
     int secondDice = 52;
     int finalCell = 62;
+
     public GameObject diceRime;
     public GameObject gooseRime;
 
@@ -170,7 +171,7 @@ public class GameRules : MonoBehaviour
             }
 
             playerInWell = _playerMovement;
-            Debug.Log("the player " + playerInWell.playerID + " is stuck during: " + _playerMovement.noPlayableTurns + " TURNOS");
+            Debug.Log("the player " + playerInWell.playerID + " is stuck during: " + _playerMovement.noPlayableTurns + " TURNS");
             
         }
         void Labyrinth()
@@ -185,7 +186,7 @@ public class GameRules : MonoBehaviour
         {
             AudioManager.instance.PlaySound(audioClipJail);
             _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 2;
-            Debug.Log("No entra aqui?");
+            Debug.Log("¿Entra en la carcel?");
         }
         void Dices()
         {
@@ -209,24 +210,24 @@ public class GameRules : MonoBehaviour
         void Death()
         {
             AudioManager.instance.PlaySound(audioClipDeath);
-            if(_playerMovement.playerID == "Player 1" || _playerMovement.playerID == "Jugador 1")
+            if(_playerMovement.playerID == "Player 1" || _playerMovement.playerID == "Jugador 1" || _playerMovement.playerID == "- 4")
             {
                 _playerMovement.currentCell = 68;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
                 _playerMovement.currentCell = 0;
-            }else if(_playerMovement.playerID == "Player 2" || _playerMovement.playerID == "Jugador 2")
+            }else if(_playerMovement.playerID == "Player 2" || _playerMovement.playerID == "Jugador 2" || _playerMovement.playerID == "- 4")
             {
                 _playerMovement.currentCell = 69;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell ].position;
                 _playerMovement.currentCell = 0;
             }
-            else if (_playerMovement.playerID == "Player 3" || _playerMovement.playerID == "Jugador 3")
+            else if (_playerMovement.playerID == "Player 3" || _playerMovement.playerID == "Jugador 3" || _playerMovement.playerID == "- 4")
             {
                 _playerMovement.currentCell = 70;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
                 _playerMovement.currentCell = 0;
             }
-            else if (_playerMovement.playerID == "Player 4" || _playerMovement.playerID == "Jugador 4")
+            else if (_playerMovement.playerID == "Player 4" || _playerMovement.playerID == "Jugador 4" || _playerMovement.playerID == "- 4")
             {
                 _playerMovement.currentCell = 71;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
