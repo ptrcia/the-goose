@@ -86,8 +86,7 @@ public class PlayerMovement : MonoBehaviour
             currentCell++;
             transform.position = CellManager.instance.cells[currentCell].position;
             AudioManager.instance.PlaySound(audioClipMovement);
-            //yield return new WaitForSeconds(0.05f);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.05f);
             //StartMovementAnimation(); //Animation
             Debug.Log("From cell to cell: " + currentCell);
         }
