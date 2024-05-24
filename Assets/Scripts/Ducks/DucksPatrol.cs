@@ -5,39 +5,41 @@ using UnityEngine.AI;
 
 public class DucksPatrol : MonoBehaviour
 {
-    [Header("Patrol")]
-    [SerializeField] Transform[] checkPoints;
+    public Transform[] patrolPoints;
+    private int currentPoint = 0;
     private NavMeshAgent agent;
+
+
+    public float minPauseDuration = 1f;
+    public float maxPauseDuration = 3f;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        MoveToNextPoint();
     }
 
-    void Update()
+    private void Update()
     {
-        StartCoroutine(nameof(Patrol));     
-    }
-    IEnumerator Patrol()
-    {
-        #region Patrol Random
-
-        Vector3 destination = transform.position;
-        while (true)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            while (Vector3.Distance(transform.position, destination) > agent.stoppingDistance)
-            {
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(Random.Range(1, 3));
-            //cojo punto aleatorio dentro de una esfera fija
-            Vector3 randomPoint = checkPoints[0].position + (Random.insideUnitSphere * 5);
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomPoint, out hit, 10, 1);
-            destination = hit.position;
-            agent.SetDestination(destination);
+            StartCoroutine(PauseBeforeNextMove(Random.Range(minPauseDuration, maxPauseDuration)));
         }
-        #endregion
+    }
+    IEnumerator PauseBeforeNextMove(float duration)
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(duration);
+        agent.isStopped = false;
+        MoveToNextPoint();
+    }
+    void MoveToNextPoint()
+    {
+        if (patrolPoints.Length == 0)
+            return;
+
+        Vector3 randomPoint = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
+
+        agent.SetDestination(randomPoint);
     }
 }

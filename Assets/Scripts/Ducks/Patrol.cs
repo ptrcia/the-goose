@@ -5,43 +5,40 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
-    public Vector2 minBounds; // Límite mínimo del área de patrulla
-    public Vector2 maxBounds; // Límite máximo del área de patrulla
     public float speed = 5f; // Velocidad de movimiento del objeto
     public float changeDestinationInterval = 5f; // Intervalo para cambiar de destino
+    public float rotationSpeed = 5f; // Velocidad de rotación
 
-    private Vector3 targetPosition; // Posición actual del destino
-    public float rotationSpeed = 5f;
+    private NavMeshAgent agent;
 
     void Start()
     {
-        // Inicializar la posición de destino aleatoria dentro del área de patrulla
-        targetPosition = GetRandomPosition();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Random.Range(1, 7);
         // Comenzar la rutina para cambiar de destino periódicamente
         StartCoroutine(ChangeDestination());
     }
 
     void Update()
     {
-        // Mover el objeto hacia el destino
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-        // Si el objeto llega al destino, obtener uno nuevo aleatorio
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        if (agent.remainingDistance < 0.1f && !agent.pathPending)
         {
-            targetPosition = GetRandomPosition();
+            // Si el agente ha llegado a su destino actual y no está calculando una nueva ruta
+            agent.SetDestination(GetRandomPointInNavMesh());
         }
-
         LookAtTarget();
-
     }
 
-    // Método para obtener una posición aleatoria dentro del área de patrulla
-    Vector3 GetRandomPosition()
+    // Método para obtener un punto aleatorio dentro del NavMesh
+    Vector3 GetRandomPointInNavMesh()
     {
-        float randomX = Random.Range(minBounds.x, maxBounds.x);
-        float randomZ = Random.Range(minBounds.y, maxBounds.y);
-        return new Vector3(randomX, transform.position.y, randomZ);
+        NavMeshHit hit;
+        Vector3 randomPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(Random.insideUnitSphere * agent.radius * 20 + transform.position, out hit, agent.radius * 20, NavMesh.AllAreas))
+        {
+            randomPosition = hit.position;
+        }
+        return randomPosition;
     }
 
     // Rutina para cambiar de destino periódicamente
@@ -50,13 +47,13 @@ public class Patrol : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(changeDestinationInterval);
-            targetPosition = GetRandomPosition();
+            agent.SetDestination(GetRandomPointInNavMesh());
         }
     }
 
     void LookAtTarget()
     {
-        Vector3 direction = (targetPosition - transform.position).normalized;
+        Vector3 direction = (agent.steeringTarget - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
 
         // Calcula la rotación suavizada
@@ -66,4 +63,3 @@ public class Patrol : MonoBehaviour
         transform.rotation = newRotation;
     }
 }
-
