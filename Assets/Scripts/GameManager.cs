@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject winPanel;
     public GameObject pausePanel;
+    public string winnerName;
 
     [Header("Audio")]
     [SerializeField] AudioClip audioClipWin;
@@ -41,12 +42,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void Win()
+    public void Win(GameObject winner)
     {
-        Debug.Log("YOU WON");
-        PauseGame();;
+        //winnerName = winner.GetComponent<PlayerMovement>().playerID;
+
+        //Debug.Log(winnerName + " WON");
+        Debug.Log(" you WON");
+        PauseGame();
         AudioManager.instance.PlaySound(audioClipWin);
-        winPanel.SetActive(true);
+        winPanel.SetActive(true);     
     }
     void PauseGame()
     {

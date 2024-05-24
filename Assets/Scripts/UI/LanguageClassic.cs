@@ -35,17 +35,20 @@ public class LanguageClassic : MonoBehaviour
     [SerializeField] TextMeshProUGUI dice;
 
     [Header("Pause Menu")]
+    [SerializeField] TextMeshProUGUI pause;
     [SerializeField] TextMeshProUGUI reload;
     [SerializeField] TextMeshProUGUI exit;
     [SerializeField] TextMeshProUGUI mainmenu;
     [SerializeField] TextMeshProUGUI resume;
 
     [Header("WinPanel")]
+    [SerializeField] TextMeshProUGUI textWin;
     [SerializeField] TextMeshProUGUI reloadWin;
     [SerializeField] TextMeshProUGUI exitWin;
     [SerializeField] TextMeshProUGUI mainmenuWin;
 
     [Header("Audio")]
+    [SerializeField] TextMeshProUGUI master;
     [SerializeField] TextMeshProUGUI music;
     [SerializeField] TextMeshProUGUI SFX;
 
@@ -171,15 +174,19 @@ public class LanguageClassic : MonoBehaviour
         bridge.text = "From bidge to bridge\r\n come see if I miss";
         dice.text = "From dice to dice\r\nI slide and get by";
 
+        pause.text = "Pause";
         reload.text = "Restart";
         exit.text = "Exit";
         mainmenu.text = "Main Menu";
         resume.text = "Continue";
 
+        //textWin.text = GameManager.instance.winnerName + " won!";
+        textWin.text = " You Won!";
         reloadWin.text = "Another one!";
         exitWin.text = "Exit";
         mainmenuWin.text = "Main Menu";
 
+        master.text = "Master";
         music.text = "Music";
         SFX.text = "Sound Effects";
 
@@ -214,15 +221,20 @@ public class LanguageClassic : MonoBehaviour
         bridge.text = "De puente a puente\r\n y tiro porque me lleva la corriente";
         dice.text = "De dado a dado \r\n y tiro porque me ha tocado";
 
+        pause.text = "Pausa";
         reload.text = "Nueva Partida";
         exit.text = "Salir";
         mainmenu.text = "Menú Principal";
         resume.text = "Continuar";
 
+        //textWin.text = GameManager.instance.winnerName + " ganó!";
+        textWin.text =" Has ganado!";
+
         reloadWin.text = "¡Otra más!";
         exitWin.text = "Salir";
         mainmenuWin.text = "Menú Principal";
 
+        master.text = "Master";
         music.text = "Música";
         SFX.text = "Efectos de sonido";
 
@@ -257,15 +269,19 @@ public class LanguageClassic : MonoBehaviour
         bridge.text = "橋から橋へ\r\n 見に来てください、私が外すかどうか";
         dice.text = "サイコロからサイコロへ\r\n 滑っていきます";
 
+        pause.text = "休止";
         reload.text = "再起動";
         exit.text = "終了";
         mainmenu.text = "メインメニュー";
         resume.text = "続ける";
 
+        //textWin.text = GameManager.instance.winnerName + " が勝ちました!";
+        textWin.text = " が勝ちました!";
         reloadWin.text = "もう一度！";
         exitWin.text = "終了";
         mainmenuWin.text = "メインメニュー";
 
+        master.text = "ー般オーディオ";
         music.text = "音楽";
         SFX.text = "効果音";
 

@@ -12517,13 +12517,16 @@ MonoBehaviour:
   goose: {fileID: 2126802375}
   bridge: {fileID: 166580803}
   dice: {fileID: 1054885342}
+  pause: {fileID: 1957681531}
   reload: {fileID: 989887479}
   exit: {fileID: 1986764957}
   mainmenu: {fileID: 237741389}
   resume: {fileID: 821634684}
+  textWin: {fileID: 933765299}
   reloadWin: {fileID: 1612060806}
   exitWin: {fileID: 1218120129}
   mainmenuWin: {fileID: 1215473852}
+  master: {fileID: 1552138358}
   music: {fileID: 2143146834}
   SFX: {fileID: 1448690914}
   round: {fileID: 1810190839}
@@ -14388,6 +14391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winPanel: {fileID: 945162623}
   pausePanel: {fileID: 1956769246}
+  winnerName: 
   audioClipWin: {fileID: 8300000, guid: 316621c24b846fc41b77f1881a354ff0, type: 3}
 --- !u!1 &1404278392
 GameObject:

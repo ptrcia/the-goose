@@ -128,7 +128,6 @@ public class GameRules : MonoBehaviour
             else if (_playerMovement.currentCell == 58)
             {
                 player.transform.position = CellManager.instance.cells[finalCell].position;
-                gameManager.Win();
             }
         }
         void Bridge()
@@ -140,7 +139,6 @@ public class GameRules : MonoBehaviour
                 _playerMovement.currentCell = secondBridge;
                 player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
                 turnManager.nextTurnPlayer = false;
-
             }
             else if (_playerMovement.currentCell == secondBridge)
             {
@@ -242,7 +240,7 @@ public class GameRules : MonoBehaviour
         }
         void Final()
         {
-            gameManager.Win();
+            gameManager.Win(this.gameObject);
         }
         void Garden()
         {
