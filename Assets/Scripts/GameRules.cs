@@ -56,51 +56,55 @@ public class GameRules : MonoBehaviour
             case 4 or 8 or 13 or 17 or 22 or 26 or 31 or 35 or
                40 or 44 or 49 or 53 or 58:
                 Debug.Log("Oca");
-                Goose();
+                Goose(_playerMovement, player);
                 break;
             case 5 or 11:
                 Debug.Log("Puente");
-                Bridge();
+                Bridge(_playerMovement, player);
                 break;
             case 18:
                 Debug.Log("Posada");
-                Inn();
+                Inn(_playerMovement);
                 break;
             case 30:
                 Debug.Log("Pozo");
-                Well();
+                Well(_playerMovement);
                 break;
             case 41:
                 Debug.Log("Laberinto");
-                Labyrinth();
+                Labyrinth(_playerMovement, player);
                 break;
             case 25 or 52:
                 Debug.Log("Dados");
-                Dices();
+                Dices(_playerMovement, player);
                 break;
             case 51:
                 Debug.Log("Carcel");
-                Jail();
+                Jail(_playerMovement);
                 break;
             case 57:
                 Debug.Log("Calavera");
-                Death();
+                Death(_playerMovement, player);
                 break;
             case 62:
                 Debug.Log("Final");
-                Final();
+                Final(_playerMovement);
                 break;
             case > 62:
                 Debug.Log("Jardín");
-                Garden();
+                Garden(_playerMovement, player);
                 //StartCoroutine(GardenBackwards());
                 //aqui no me funcionada el nameof
                 break;
             default: break;
         }
-        void Goose()
-        {
-            Dictionary<int, int> cellOcaTransitions = new Dictionary<int, int>()
+        
+
+    }
+
+    private void Goose(PlayerMovement _playerMovement, GameObject player)
+    {
+        Dictionary<int, int> cellOcaTransitions = new Dictionary<int, int>()
             {
                 { 4, 8 },
                 { 8, 13 },
@@ -116,171 +120,172 @@ public class GameRules : MonoBehaviour
                 { 53, 58 }
             };
 
-            if (cellOcaTransitions.ContainsKey(_playerMovement.currentCell))
-            {
-                gameManagerUI.StartAnimatingGooseRhymes();
-                int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
-                AudioManager.instance.PlaySound(audioClipGoose);
-                
-                _playerMovement.currentCell = destinationCell;
-                player.transform.position = CellManager.instance.cells[destinationCell].position;
-                turnManager.nextTurnPlayer = false;
-            }
-            else if (_playerMovement.currentCell == 58)
-            {
-                player.transform.position = CellManager.instance.cells[finalCell].position;
-            }
-        }
-        void Bridge()
+        if (cellOcaTransitions.ContainsKey(_playerMovement.currentCell))
         {
-            AudioManager.instance.PlaySound(audioClipBridge);
-            gameManagerUI.StartAnimatingBridgeRhymes();
-            if (_playerMovement.currentCell == firstBridge)
-            {
-                _playerMovement.currentCell = secondBridge;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-                turnManager.nextTurnPlayer = false;
-            }
-            else if (_playerMovement.currentCell == secondBridge)
-            {
-                _playerMovement.currentCell = firstBridge;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-                turnManager.nextTurnPlayer = false;
-            }
-        }
-        void Inn()
-        {
-            AudioManager.instance.PlaySound(audioClipInnOpen);
-            AudioManager.instance.PlaySound(audioClipInnPeople);
-            AudioManager.instance.PlaySound(audioClipInnClose);
-            _playerMovement.noPlayableTurns++;
-        }
-        void Well()
-        {
-            AudioManager.instance.PlaySound(audioClipWell);
-            // Sum up 3 no playable turns
-            _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 3;
-            playerInWellRemainingTurns = 3;
+            gameManagerUI.StartAnimatingGooseRhymes();
+            int destinationCell = cellOcaTransitions[_playerMovement.currentCell];
+            AudioManager.instance.PlaySound(audioClipGoose);
 
-            // Check if there is anyone in the Well
-            if (playerInWell != null)
-            {
-                // Set free whoever was in the well
-                playerInWell.noPlayableTurns = 0;
-                Debug.Log("the player " + playerInWell.playerID + " has been released thanks to: " + _playerMovement.playerID);
-            }
-
-            playerInWell = _playerMovement;
-            Debug.Log("the player " + playerInWell.playerID + " is stuck during: " + _playerMovement.noPlayableTurns + " TURNS");
-            
-        }
-        void Labyrinth()
-        {
-            AudioManager.instance.PlaySound(audioClipLab);
-            _playerMovement.currentCell = 30;
-            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-            Well();
-
-        }
-        void Jail()
-        {
-            AudioManager.instance.PlaySound(audioClipJail);
-            _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 2;
-            Debug.Log("¿Entra en la carcel?");
-        }
-        void Dices()
-        {
-            gameManagerUI.StartAnimatingDiceRhymes();
-            if (_playerMovement.currentCell == firstDice)
-            {
-                AudioManager.instance.PlaySound(audioClipDice);
-                _playerMovement.currentCell = secondDice;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-
-            }
-            else if (_playerMovement.currentCell == secondDice)
-            {
-                AudioManager.instance.PlaySound(audioClipDice);
-                _playerMovement.currentCell = firstDice;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-
-            }
+            _playerMovement.currentCell = destinationCell;
+            player.transform.position = CellManager.instance.cells[destinationCell].position;
             turnManager.nextTurnPlayer = false;
         }
-        void Death()
+        else if (_playerMovement.currentCell == 58)
         {
-            AudioManager.instance.PlaySound(audioClipDeath);
-            if(_playerMovement.playerID == "Player 1" || _playerMovement.playerID == "Jugador 1" || _playerMovement.playerID == "- 4")
-            {
-                _playerMovement.currentCell = 68;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-                _playerMovement.currentCell = 0;
-            }else if(_playerMovement.playerID == "Player 2" || _playerMovement.playerID == "Jugador 2" || _playerMovement.playerID == "- 4")
-            {
-                _playerMovement.currentCell = 69;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell ].position;
-                _playerMovement.currentCell = 0;
-            }
-            else if (_playerMovement.playerID == "Player 3" || _playerMovement.playerID == "Jugador 3" || _playerMovement.playerID == "- 4")
-            {
-                _playerMovement.currentCell = 70;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-                _playerMovement.currentCell = 0;
-            }
-            else if (_playerMovement.playerID == "Player 4" || _playerMovement.playerID == "Jugador 4" || _playerMovement.playerID == "- 4")
-            {
-                _playerMovement.currentCell = 71;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-                _playerMovement.currentCell = 0;
-            }
-            else
-            {
-                Debug.Log("no ID");
-            }
-
+            player.transform.position = CellManager.instance.cells[finalCell].position;
+            Final(_playerMovement);
         }
-        void Final()
+    }
+    private void Bridge(PlayerMovement _playerMovement, GameObject player)
+    {
+        AudioManager.instance.PlaySound(audioClipBridge);
+        gameManagerUI.StartAnimatingBridgeRhymes();
+        if (_playerMovement.currentCell == firstBridge)
         {
-            gameManager.Win(this.gameObject);
+            _playerMovement.currentCell = secondBridge;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            turnManager.nextTurnPlayer = false;
         }
-        void Garden()
+        else if (_playerMovement.currentCell == secondBridge)
         {
-            int difference = 0; //the difference beetween where the player is and the final cell
-            Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);
-
-            difference = (_playerMovement.currentCell - finalCell);
-
-            Debug.Log("El valor necesario para entrar en el Jardín desde la casilla " + _playerMovement.currentCell + " es: " + difference);
-            Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
-
-
-            player.transform.position = CellManager.instance.cells[finalCell - difference].position;
-            _playerMovement.currentCell = finalCell - difference;
-
-            CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
+            _playerMovement.currentCell = firstBridge;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            turnManager.nextTurnPlayer = false;
         }
-        IEnumerator GardenBackwards()//corrutina
+    }
+    private void Inn(PlayerMovement _playerMovement)
+    {
+        AudioManager.instance.PlaySound(audioClipInnOpen);
+        AudioManager.instance.PlaySound(audioClipInnPeople);
+        AudioManager.instance.PlaySound(audioClipInnClose);
+        _playerMovement.noPlayableTurns++;
+    }
+    private void Well(PlayerMovement _playerMovement)
+    {
+        AudioManager.instance.PlaySound(audioClipWell);
+        // Sum up 3 no playable turns
+        _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 3;
+        playerInWellRemainingTurns = 3;
+
+        // Check if there is anyone in the Well
+        if (playerInWell != null)
         {
-            int difference = 0; //the difference beetween where the player is and the final cell
-            Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);
-
-            difference = (_playerMovement.currentCell - finalCell);
-
-            Debug.Log("El valor necesario para entrar en el Jardín desde la casilla " + _playerMovement.currentCell + " es: " + difference);
-            Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
-
-            //ussing the corroutine if for adding a delay
-            for (int i = _playerMovement.currentCell; i > finalCell - difference; i--)
-            {
-                _playerMovement.currentCell--;
-                player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-                yield return new WaitForSeconds(0.5f);
-
-            }
-            //por alguna razon aqui se cambia de jugador
-            CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
+            // Set free whoever was in the well
+            playerInWell.noPlayableTurns = 0;
+            Debug.Log("the player " + playerInWell.playerID + " has been released thanks to: " + _playerMovement.playerID);
         }
 
+        playerInWell = _playerMovement;
+        Debug.Log("the player " + playerInWell.playerID + " is stuck during: " + _playerMovement.noPlayableTurns + " TURNS");
+
+    }
+    private void Labyrinth(PlayerMovement _playerMovement, GameObject player)
+    {
+        AudioManager.instance.PlaySound(audioClipLab);
+        _playerMovement.currentCell = 30;
+        player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+        Well(_playerMovement);
+
+    }
+    private void Jail(PlayerMovement _playerMovement)
+    {
+        AudioManager.instance.PlaySound(audioClipJail);
+        _playerMovement.noPlayableTurns = _playerMovement.noPlayableTurns + 2;
+        Debug.Log("¿Entra en la carcel?");
+    }
+    private void Dices(PlayerMovement _playerMovement, GameObject player)
+    {
+        gameManagerUI.StartAnimatingDiceRhymes();
+        if (_playerMovement.currentCell == firstDice)
+        {
+            AudioManager.instance.PlaySound(audioClipDice);
+            _playerMovement.currentCell = secondDice;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+
+        }
+        else if (_playerMovement.currentCell == secondDice)
+        {
+            AudioManager.instance.PlaySound(audioClipDice);
+            _playerMovement.currentCell = firstDice;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+
+        }
+        turnManager.nextTurnPlayer = false;
+    }
+    private void Death(PlayerMovement _playerMovement, GameObject player)
+    {
+        AudioManager.instance.PlaySound(audioClipDeath);
+        if (_playerMovement.playerID == "Player 1" || _playerMovement.playerID == "Jugador 1" || _playerMovement.playerID == "- 4")
+        {
+            _playerMovement.currentCell = 68;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            _playerMovement.currentCell = 0;
+        }
+        else if (_playerMovement.playerID == "Player 2" || _playerMovement.playerID == "Jugador 2" || _playerMovement.playerID == "- 4")
+        {
+            _playerMovement.currentCell = 69;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            _playerMovement.currentCell = 0;
+        }
+        else if (_playerMovement.playerID == "Player 3" || _playerMovement.playerID == "Jugador 3" || _playerMovement.playerID == "- 4")
+        {
+            _playerMovement.currentCell = 70;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            _playerMovement.currentCell = 0;
+        }
+        else if (_playerMovement.playerID == "Player 4" || _playerMovement.playerID == "Jugador 4" || _playerMovement.playerID == "- 4")
+        {
+            _playerMovement.currentCell = 71;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            _playerMovement.currentCell = 0;
+        }
+        else
+        {
+            Debug.Log("no ID");
+        }
+
+    }
+    private void Final(PlayerMovement _playerMovement)
+    {
+        gameManager.Win(_playerMovement);
+        //meterle el player
+    }
+    private void Garden(PlayerMovement _playerMovement, GameObject player)
+    {
+        int difference = 0; //the difference beetween where the player is and the final cell
+        Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);
+
+        difference = (_playerMovement.currentCell - finalCell);
+
+        Debug.Log("El valor necesario para entrar en el Jardín desde la casilla " + _playerMovement.currentCell + " es: " + difference);
+        Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
+
+
+        player.transform.position = CellManager.instance.cells[finalCell - difference].position;
+        _playerMovement.currentCell = finalCell - difference;
+
+        CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
+    }
+    private IEnumerator GardenBackwards(PlayerMovement _playerMovement, GameObject player)//corrutina
+    {
+        int difference = 0; //the difference beetween where the player is and the final cell
+        Debug.Log("El jugador se mueve a la casilla " + _playerMovement.currentCell);
+
+        difference = (_playerMovement.currentCell - finalCell);
+
+        Debug.Log("El valor necesario para entrar en el Jardín desde la casilla " + _playerMovement.currentCell + " es: " + difference);
+        Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
+
+        //ussing the corroutine if for adding a delay
+        for (int i = _playerMovement.currentCell; i > finalCell - difference; i--)
+        {
+            _playerMovement.currentCell--;
+            player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
+            yield return new WaitForSeconds(0.5f);
+
+        }
+        //por alguna razon aqui se cambia de jugador
+        CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
     }
     public void CheckWhosTurn(PlayerMovement player)
     {

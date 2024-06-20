@@ -1,4 +1,5 @@
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] GameObject winPanel;
+    [SerializeField] TextMeshProUGUI winText;
     public GameObject pausePanel;
-    public string winnerName;
+    public string winnerName= "hola";
 
     [Header("Audio")]
     [SerializeField] AudioClip audioClipWin;
@@ -42,12 +44,13 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void Win(GameObject winner)
+    public void Win(PlayerMovement winner)
     {
-        //winnerName = winner.GetComponent<PlayerMovement>().playerID;
+        winnerName = winner.playerID;
 
-        //Debug.Log(winnerName + " WON");
-        Debug.Log(" you WON");
+        winText.text = winnerName + " won!";
+        Debug.Log(winText.text);
+
         PauseGame();
         AudioManager.instance.PlaySound(audioClipWin);
         winPanel.SetActive(true);     
