@@ -54,7 +54,6 @@ public class LanguageClassic : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] TextMeshProUGUI round;
-    [SerializeField] TextMeshProUGUI win;
 
     [Header("Fonts")]
     [SerializeField] public TMP_FontAsset japaneseFont;
@@ -122,7 +121,7 @@ public class LanguageClassic : MonoBehaviour
             pause, reload, exit, mainmenu, resume,
             textWin, reloadWin, exitWin, mainmenuWin,
             master, music, SFX,
-            round, win
+            round
         };
 
         foreach (var textComponent in textComponents)
@@ -180,8 +179,8 @@ public class LanguageClassic : MonoBehaviour
         mainmenu.text = "Main Menu";
         resume.text = "Continue";
 
-        //textWin.text = GameManager.instance.winnerName + " won!";
-        textWin.text = " You Won!";
+        textWin.text = GameManager.instance.winnerName + " won!";
+        //textWin.text = " You Won!";
         reloadWin.text = "Another one!";
         exitWin.text = "Exit";
         mainmenuWin.text = "Main Menu";
@@ -191,7 +190,6 @@ public class LanguageClassic : MonoBehaviour
         SFX.text = "Sound Effects";
 
         round.text = "New Round!";
-        win.text = "You win!";
     }
 
     void SetSpanishText()
@@ -227,8 +225,8 @@ public class LanguageClassic : MonoBehaviour
         mainmenu.text = "Menú Principal";
         resume.text = "Continuar";
 
-        //textWin.text = GameManager.instance.winnerName + " ganó!";
-        textWin.text =" Has ganado!";
+        textWin.text = GameManager.instance.winnerName + " ganó!";
+        //textWin.text =" Has ganado!";
 
         reloadWin.text = "¡Otra más!";
         exitWin.text = "Salir";
@@ -239,7 +237,6 @@ public class LanguageClassic : MonoBehaviour
         SFX.text = "Efectos de sonido";
 
         round.text = "¡Nueva Ronda!";
-        win.text = "¡Has ganado!";
     }
 
     void SetJapaneseText()
@@ -275,8 +272,8 @@ public class LanguageClassic : MonoBehaviour
         mainmenu.text = "メインメニュー";
         resume.text = "続ける";
 
-        //textWin.text = GameManager.instance.winnerName + " が勝ちました!";
-        textWin.text = " が勝ちました!";
+        textWin.text = GameManager.instance.winnerName + " が勝ちました!";
+        //textWin.text = " が勝ちました!";
         reloadWin.text = "もう一度！";
         exitWin.text = "終了";
         mainmenuWin.text = "メインメニュー";
@@ -286,6 +283,5 @@ public class LanguageClassic : MonoBehaviour
         SFX.text = "効果音";
 
         round.text = "新しいラウンド！";
-        win.text = "あなたの勝ち！";
     }
 }

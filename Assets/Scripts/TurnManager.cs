@@ -144,7 +144,7 @@ public class TurnManager : MonoBehaviour
         PlayerOrderAutomatic2();
         //StartCoroutine(PlayerOrder());
         //PlayerOrder();
-        StartCoroutine(PlayerTurn());
+        StartCoroutine(nameof(PlayerTurn));
     }
 
     #region Turns

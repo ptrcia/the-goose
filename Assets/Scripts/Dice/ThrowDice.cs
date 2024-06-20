@@ -20,6 +20,9 @@ public class ThrowDice : MonoBehaviour
     public Material translucentMaterial;
     public Material opaqueMaterial;
 
+    //private int[] values = new int[5] {2,2,3,6,1};
+    //private int counter = 0;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -40,8 +43,9 @@ public class ThrowDice : MonoBehaviour
         if (rigidbody.velocity.magnitude != 0 && clickedOn) 
         {
             hasRolled = true;
-        } else if (hasRolled && rigidbody.velocity.magnitude <0.5)
+        } else if (hasRolled && rigidbody.velocity.magnitude < 0.5f)
         {
+            clickedOn = false;
             int result = 0;
             foreach (DiceRaycast face in diceFaces)
             {
@@ -54,6 +58,8 @@ public class ThrowDice : MonoBehaviour
             hasRolled = false;
             canRoll = true;
             this.diceResult = result;
+            //this.diceResult = values[counter];
+            //counter++;
             diceResultUpdated = true;
             Debug.Log("RESULTADO = " + result);
             Debug.Log(diceResultUpdated);

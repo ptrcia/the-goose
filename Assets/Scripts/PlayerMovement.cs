@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip audioClipMovement;
 
     private int input;
+    private bool lastCellToMove = false;
     private void Awake()
     {
         gameRules = GameObject.FindGameObjectWithTag("GameRules").GetComponent<GameRules>();
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public void MoveIfDiceRolled()
     {
         movementCompleted = false;
+        lastCellToMove = false;
         StartCoroutine(WaitForDiceRolled());
     }
     //custom number
@@ -56,14 +58,15 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WaitForDiceRolled()
     {
         
-        /*
-        //Custom number
         
+        //Custom number
+        /*
         int diceResult=0;
         yield return new WaitUntil(() => UnityEngine.Input.GetKeyDown(KeyCode.Return));
-        diceResult = input;*/
-        
-        
+        diceResult = input;
+        */
+        /////
+        ///
         //Roll the dice
         
         yield return new WaitUntil(() => throwDice.hasRolled);
@@ -79,10 +82,17 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.Log("Dice Result:" + diceResult);
         
+
+        //////
+
         //Movement
         
         for (int i = 0; i < diceResult; i++) 
         {
+            if (i == diceResult - 1)
+            {
+                lastCellToMove = true;
+            }
             currentCell++;
             transform.position = CellManager.instance.cells[currentCell].position;
             AudioManager.instance.PlaySound(audioClipMovement);
@@ -99,6 +109,11 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("not playable turns AFTER checking " + noPlayableTurns);
         movementCompleted = true;
         throwDice.hasRolled = false;
+    }
+
+    public bool IsMoovingToLastCell()
+    {
+        return lastCellToMove;
     }
 
     public bool HasCompletedMovement()
@@ -124,82 +139,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Dice Value -> " + diceValue);
         movementCompleted = true;
     }
-    #endregion
-
-    #region Cell Arragement
-
-    public void CellArragement(int playersCounter, List<GameObject>players)
-    {
-        //Debug.Log("VARIABLES CellArrangement \n - playersCounter: " + playersCounter.ToString() + " |- players: " + listaStringPorfi(players));
-        if (playersCounter == 2)
-        {
-            Debug.Log("2 players here");
-
-            //down
-            players[0].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z + 0.2f);
-            //up
-            players[1].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z - 0.2f);
-            
-        }
-        else if(playersCounter == 3 )
-        {
-            Debug.Log("3 players here");
-            //down
-            players[0].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x, 
-                CellManager.instance.cells[currentCell].position.y, 
-                CellManager.instance.cells[currentCell].position.z - 0.2f);
-            //up right
-            players[1].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x - 0.17f,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z + 0.2f);
-            //up left
-            players[2].transform.position = new Vector3(              
-                CellManager.instance.cells[currentCell].position.x + 0.17f,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z + 0.2f);
-        }
-        else if(playersCounter == 4 )
-        {
-            Debug.Log("4 players here");
-            //down right
-            players[0].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x + 0.17f, 
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z - 0.2f);
-            //up right
-            players[1].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x - 0.17f,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z + 0.2f);
-            //up left
-            players[2].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x + 0.17f,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z + 0.2f);
-            //down left
-            players[3].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x - 0.17f,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z - 0.2f);
-        }
-        else
-        {
-            Debug.Log("Center");
-            players[0].transform.position = new Vector3(
-                CellManager.instance.cells[currentCell].position.x,
-                CellManager.instance.cells[currentCell].position.y,
-                CellManager.instance.cells[currentCell].position.z);
-        }
-    }
-
     #endregion
 
     #region Movement Animation
