@@ -14581,7 +14581,6 @@ MonoBehaviour:
   winPanel: {fileID: 945162623}
   winText: {fileID: 933765299}
   pausePanel: {fileID: 1956769246}
-  winnerName: 
   audioClipWin: {fileID: 8300000, guid: 316621c24b846fc41b77f1881a354ff0, type: 3}
 --- !u!1 &1404278392
 GameObject:
@@ -16849,7 +16848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1611276002
 RectTransform:
   m_ObjectHideFlags: 0

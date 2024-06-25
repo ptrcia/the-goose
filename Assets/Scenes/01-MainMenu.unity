@@ -2840,6 +2840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   japaneseFont: {fileID: 11400000, guid: 1899f1e2c70bb7742b79540c801cabd6, type: 2}
+  basicFont: {fileID: 11400000, guid: c6053a70ab94b1c43aaa7c1c81614161, type: 2}
 --- !u!1 &623898046
 GameObject:
   m_ObjectHideFlags: 0
