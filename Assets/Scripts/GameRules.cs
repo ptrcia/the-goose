@@ -92,8 +92,8 @@ public class GameRules : MonoBehaviour
                 break;
             case > 62:
                 Debug.Log("Jardín");
-                Garden(_playerMovement, player);
-                //StartCoroutine(GardenBackwards());
+                //Garden(_playerMovement, player);
+                StartCoroutine(GardenBackwards(_playerMovement, player));
                 //aqui no me funcionada el nameof
                 break;
             default: break;
@@ -277,13 +277,13 @@ public class GameRules : MonoBehaviour
         Debug.Log("El jugador se mueve a la casilla " + (finalCell - difference));
 
         //ussing the corroutine if for adding a delay
-        for (int i = _playerMovement.currentCell; i > finalCell - difference; i--)
+        for (int i = finalCell; i >= finalCell - difference; i--)
         {
-            _playerMovement.currentCell--;
+            _playerMovement.currentCell = i;
             player.transform.position = CellManager.instance.cells[_playerMovement.currentCell].position;
-            yield return new WaitForSeconds(0.5f);
-
+            yield return new WaitForSeconds(0.05f);
         }
+
         //por alguna razon aqui se cambia de jugador
         CheckSpecialCell(_playerMovement, _playerMovement.gameObject);
     }

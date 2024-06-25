@@ -26,6 +26,7 @@ public class TurnManager : MonoBehaviour
 
     [Header("ButtonList")]
     public GameObject currentButton;
+    [SerializeField] TMP_FontAsset japaneseFont;
     RectTransform currentButtonRectTransform;
     RectTransform originalButtonRectTransform;
     List<GameObject> buttonPlayerList = new List<GameObject>();
@@ -42,7 +43,8 @@ public class TurnManager : MonoBehaviour
     private void Awake()
     {
         Debug.Log("Player count: " + PlayerPrefs.GetInt("NumberPlayers"));
-        for(int i = 0; i< PlayerPrefs.GetInt("NumberPlayers"); i++)
+        string languageChosen = PlayerPrefs.GetString("LanguageChosen");
+        for (int i = 0; i< PlayerPrefs.GetInt("NumberPlayers"); i++)
         {
             #region Player
             GameObject clonePrefab = Instantiate(playerPrefab, playerStartPosition[i]);
@@ -50,34 +52,35 @@ public class TurnManager : MonoBehaviour
             clonePrefab.transform.localScale = new Vector3(5f, 0.01f, 5f);
             clonePrefab.transform.localPosition = new Vector3(0, 0.005f, 0);
 
-            if (PlayerPrefs.GetString("LanguageChosen") == "English")
+            string newID;
+            switch (languageChosen)
             {
-                string newID = "Player " + (i + 1).ToString();
-                clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
-                //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
-                clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
-                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
-
-            }
-            else if(PlayerPrefs.GetString("LanguageChosen") == "Spanish")
-            {
-                string newID = "Jugador " + (i + 1).ToString();
-                clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
-                //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
-                clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
-                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
-
-            }
-            else if (PlayerPrefs.GetString("LanguageChosen") == "Japanese")
-            {
-                //TENGO PENDIENTE ESTO
-                string newID = "- " + (i + 1).ToString();
-                //選手
-                //プレーヤー
-                clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
-                //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
-                clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
-                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                case "English":
+                    newID = $"Player {i + 1}";
+                    clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
+                    //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
+                    clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+                    //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                    break;
+                case "Spanish":
+                    newID = $"Jugador {i + 1}";
+                    clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
+                    //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
+                    clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+                    //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                    break;
+                case "Japanese":
+                    //TENGO PENDIENTE ESTO
+                    newID = $"選手 {i + 1}";
+                    //選手
+                    //プレーヤー
+                    clonePrefab.GetComponent<PlayerMovement>().playerID = newID;
+                    //Debug.Log("Prefab ID: " + clonePrefab.GetComponent<PlayerMovement>().playerID);
+                    clonePrefab.GetComponentInChildren<TextMeshProUGUI>().text = newID;
+                    //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                    break;
+                default:
+                    break;
             }
             #endregion
 
@@ -85,25 +88,29 @@ public class TurnManager : MonoBehaviour
             cloneButtonPrefab = Instantiate(playerButtonPrefab, playerButtonStartPosition[i]);
             cloneButtonPrefab.GetComponent<Image>().color = new Color(playerColor[i].r, playerColor[i].g, playerColor[i].b, 1f);
 
-            if (PlayerPrefs.GetString("LanguageChosen") == "English")
+            string newIDButton;
+            switch (languageChosen)
             {
-                string newIDButton = "Player " + (i + 1).ToString();
-                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
-                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
-
-            }
-            else if(PlayerPrefs.GetString("LanguageChosen") == "Spanish")
-            {
-                string newIDButton = "Jugador " + (i + 1).ToString();
-                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
-                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
-
-            }
-            else if (PlayerPrefs.GetString("LanguageChosen") == "Japanese")
-            {//TENGO PENDIENTE ESTO
-                string newIDButton = "- " + (i + 1).ToString();
-                cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
-                //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                case "English":
+                    newIDButton = $"Player {i + 1}";
+                    cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+                    //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                    break;
+                case "Spanish":
+                    newIDButton = $"Jugador {i + 1}";
+                    cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().text = newIDButton;
+                    //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                    break;
+                case "Japanese":
+                    //TENGO PENDIENTE ESTO
+                    newIDButton = $"選手 {i + 1}";
+                    TextMeshProUGUI playerText = cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>();
+                    playerText.font = japaneseFont;
+                    playerText.text = newIDButton;
+                    //cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().font = LanguageClassic.instance.basicFont;
+                    break;
+                default:
+                    break;
             }
             cloneButtonPrefab.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             #endregion

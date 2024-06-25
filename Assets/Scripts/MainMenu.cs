@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -102,7 +102,7 @@ public class MainMenu : MonoBehaviour
                 languageChosen = "Spanish";
                 PlayerPrefs.SetString("LanguageChosen", languageChosen);
                 break;
-            case "Japanese":
+            case "日本語":
                 languageChosen = "Japanese";
                 PlayerPrefs.SetString("LanguageChosen", languageChosen);
                 break;
@@ -133,7 +133,7 @@ public class MainMenu : MonoBehaviour
                 }
                 else if (PlayerPrefs.GetString("LanguageChosen") == "Spanish")
                 {
-                    messageCode.text = "C�digo err�neo";
+                    messageCode.text = "Código erróneo";
                 }
                 break;
         }

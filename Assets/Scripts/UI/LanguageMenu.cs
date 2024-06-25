@@ -11,7 +11,7 @@ public class LanguageMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI start;
     [SerializeField] TextMeshProUGUI language;
-    //[SerializeField] TextMeshProUGUI languageOptions;
+    [SerializeField] TextMeshProUGUI languageOptions;
     [SerializeField] TextMeshProUGUI exit;
     [SerializeField] TextMeshProUGUI master;
     [SerializeField] TextMeshProUGUI music;
@@ -72,7 +72,7 @@ public class LanguageMenu : MonoBehaviour
     void ApplyFontToAllTextComponents(TMP_FontAsset font)
     {
         TextMeshProUGUI[] textComponents = {
-            title, start, language, exit, master, music, SFX, players, board, startGame, options, code,
+            title, start, language, languageOptions, exit, master, music, SFX, players, board, startGame, options, code,
         };
 
         foreach (var textComponent in textComponents)
