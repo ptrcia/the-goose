@@ -11,13 +11,6 @@ public class Patrol : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    [Header("Audio")]
-    AudioClip audio1;
-
-    private List<AudioClip> cuack;
-
-    //inprogess
-
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -62,10 +55,5 @@ public class Patrol : MonoBehaviour
         Quaternion newRotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
         transform.rotation = newRotation;
-    }
-
-    private void OnMouseDown()
-    {
-        
     }
 }

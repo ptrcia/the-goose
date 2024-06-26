@@ -8,6 +8,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8bd8e2153bc3f324abbb664525290d1b, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 20c2902d37d959d4c94eb92f7839fb8e, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: a7d60842969d6ce4b8a61e9349d18afd, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 300968c9776537540b4f3ed8b9e2fa54, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0186bf079c019674f8ceee8525057612, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: a762d7b1f6dc81742a61528283e28097, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 516c50d1f3b55c244a44f7f8407a19ec, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: ca46aef2fbdea4a4fa6663f352179cb4, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 37f6c619694a1a04991e42046fda6e57, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: f1dbb6b1c7cd8584d8e42a699678cd0a, type: 3}
+    - target: {fileID: -4915897346387563139, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      propertyPath: sounds.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 792a89e23ffe5264c9e3862fd30ca206, type: 3}
     - target: {fileID: 2350457603923746814, guid: cf00535308491c34b9afe9d36c2c39a7,
         type: 3}
       propertyPath: m_Enabled
@@ -97,6 +157,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2392917684169863390}
+    - targetCorrespondingSourceObject: {fileID: 7786162666069068445, guid: cf00535308491c34b9afe9d36c2c39a7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3530723566378999779}
   m_SourcePrefab: {fileID: 100100000, guid: cf00535308491c34b9afe9d36c2c39a7, type: 3}
 --- !u!1 &7201822324714717502 stripped
 GameObject:
@@ -118,3 +182,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leader: {fileID: 0}
   followDistance: 0.5
+  angularSpeed: 120
+  acceleration: 8
+  speed: 3.5
+--- !u!114 &3530723566378999779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201822324714717502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d92de19e64bc24da4aca8de0a10009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
