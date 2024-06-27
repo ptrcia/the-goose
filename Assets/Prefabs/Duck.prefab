@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duck
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9746e54eb64176e42b23d1e191bacaef,
+        type: 3}
+      propertyPath: m_TagString
+      value: Duck
+      objectReference: {fileID: 0}
     - target: {fileID: 3198896233827727512, guid: 9746e54eb64176e42b23d1e191bacaef,
         type: 3}
       propertyPath: m_Name
@@ -264,3 +269,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37f6c619694a1a04991e42046fda6e57, type: 3}
   - {fileID: 8300000, guid: f1dbb6b1c7cd8584d8e42a699678cd0a, type: 3}
   - {fileID: 8300000, guid: 792a89e23ffe5264c9e3862fd30ca206, type: 3}
+  layer:
+    serializedVersion: 2
+    m_Bits: 128

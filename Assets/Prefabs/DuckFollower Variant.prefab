@@ -198,3 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
