@@ -60,15 +60,15 @@ public class PlayerMovement : MonoBehaviour
         
         
         //Custom number
-        /*
+        
         int diceResult=0;
         yield return new WaitUntil(() => UnityEngine.Input.GetKeyDown(KeyCode.Return));
         diceResult = input;
-        */
+        
         /////
         ///
         //Roll the dice
-        
+        /*
         yield return new WaitUntil(() => throwDice.hasRolled);
 
         Debug.Log("Dice rolled!");
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         } while (diceResult == 0);
 
         Debug.Log("Dice Result:" + diceResult);
-        
+        */
 
         //////
 

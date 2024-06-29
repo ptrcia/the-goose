@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CellContainer : MonoBehaviour
@@ -11,6 +9,14 @@ public class CellContainer : MonoBehaviour
     public List<GameObject> playersObjectsInCell = new List<GameObject>();
 
     PlayerMovement playerMovementCtrl;
+
+    Vector3 centerPos;
+    Vector3 up;
+    Vector3 down;
+    Vector3 upRight;
+    Vector3 upleft;
+    Vector3 downRight;
+    Vector3 downLeft;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -78,16 +84,17 @@ public class CellContainer : MonoBehaviour
 
     private void CellArragement()
     {
-        Vector3 up = new Vector3(0, 0, 0.2f);
-        Vector3 down = new Vector3(0, 0, -0.2f);
-        Vector3 upRight = new Vector3(-017f, 0, 0.2f);
-        Vector3 upleft = new Vector3(017f, 0, 0.2f);
-        Vector3 downRight = new Vector3(017f, 0, -0.2f);
-        Vector3 downLeft = new Vector3(-017f, 0, -0.2f);
-        Vector3 centerPos = new Vector3(
+
+        centerPos = new Vector3(
                     gameObject.transform.position.x,
                     gameObject.transform.position.y,
                     gameObject.transform.position.z);
+        up = centerPos + new Vector3(0, 0, 0.2f);
+        down = centerPos + new Vector3(0, 0, -0.2f);
+        upRight = centerPos + new Vector3(-0.17f, 0, 0.2f);
+        upleft = centerPos + new Vector3(0.17f, 0, 0.2f);
+        downRight = centerPos + new Vector3(0.17f, 0, -0.2f);
+        downLeft = centerPos + new Vector3(-0.17f, 0, -0.2f);
 
         switch (playersObjectsInCell.Count)
         {
