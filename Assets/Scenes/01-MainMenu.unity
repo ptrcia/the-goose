@@ -4871,7 +4871,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &994395037
@@ -8012,7 +8012,7 @@ MonoBehaviour:
   basicFont: {fileID: 11400000, guid: c6053a70ab94b1c43aaa7c1c81614161, type: 2}
   basicAlternativeFont: {fileID: 11400000, guid: a16049cd16c87494dab0de956f4bc0c2,
     type: 2}
-  japaneseAlternativeFont: {fileID: 11400000, guid: eb3ccf010d85ff0409082282cd4d3d06,
+  japaneseAlternativeFont: {fileID: 11400000, guid: 9ceb47c3741bda1439300893de9b15ca,
     type: 2}
 --- !u!1 &1568125060
 GameObject:

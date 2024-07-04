@@ -7250,7 +7250,7 @@ MonoBehaviour:
   currentPlayer: {fileID: 0}
   players: []
   currentButton: {fileID: 0}
-  japaneseFont: {fileID: 0}
+  japaneseFont: {fileID: 11400000, guid: 1899f1e2c70bb7742b79540c801cabd6, type: 2}
   audioClipRound: {fileID: 8300000, guid: 3094d2636131b87408b128f198e10134, type: 3}
 --- !u!1001 &777268327
 PrefabInstance:
@@ -12740,7 +12740,7 @@ MonoBehaviour:
   basicFont: {fileID: 11400000, guid: c6053a70ab94b1c43aaa7c1c81614161, type: 2}
   basicAlternativeFont: {fileID: 11400000, guid: a16049cd16c87494dab0de956f4bc0c2,
     type: 2}
-  japaneseAlternativeFont: {fileID: 11400000, guid: 141c6332e8c7c824ab868b192a3a94c8,
+  japaneseAlternativeFont: {fileID: 11400000, guid: 9ceb47c3741bda1439300893de9b15ca,
     type: 2}
 --- !u!1 &1160324997
 GameObject:
