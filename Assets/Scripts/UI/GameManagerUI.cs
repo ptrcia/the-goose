@@ -16,6 +16,10 @@ public class GameManagerUI : MonoBehaviour
     float originalLeft;
     public bool isOpen = false;
 
+    [Header("Rules Explanation Panel")]
+    [SerializeField] RectTransform rulesExplanationPanel;
+    RectTransform originalPositionrulesButtonOriginalTransform;
+
     [Header("Other")]
     [SerializeField] GameObject startButton;
     [SerializeField] GameObject newRoundPanel;
@@ -61,7 +65,9 @@ public class GameManagerUI : MonoBehaviour
     {
         originalLeft = rulesButton.anchoredPosition.x;
         rulesButtonOriginalTransform = rulesButton;
+        originalPositionrulesButtonOriginalTransform = rulesExplanationPanel;
         screenSizeZero = new Vector2(0, 0);
+        RulesExplanationPanel();
     }
 
     public void AnimatingDiceImage() //useless
@@ -119,6 +125,14 @@ public class GameManagerUI : MonoBehaviour
             rulesButton.DOAnchorPos(new Vector2(originalLeft, rulesButtonOriginalTransform.anchoredPosition.y), duration).SetEase(Ease.InBounce);
         }  
     }
+
+    public void RulesExplanationPanel()
+    {
+        rulesExplanationPanel.DOAnchorPos(new Vector2(originalPositionrulesButtonOriginalTransform.anchoredPosition.x - 450f,
+            originalPositionrulesButtonOriginalTransform.anchoredPosition.y), 1f)
+                 .SetEase(Ease.OutBounce).SetDelay(1.5f);
+    }
+
     #region Rhymes
     public void StartAnimatingBridgeRhymes()
     {
