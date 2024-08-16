@@ -32,9 +32,6 @@ It is a project thought to be expanded and to create in the future new boards wi
 
 //Sound Effects
 
-[Arguing (Baby Room)]\
-(<https://www.youtube.com/watch?v=xaK1v6dfWbk&ab_channel=FreeSoundEffects>)\
-
 [Player Movement]
 (<https://pixabay.com/es/sound-effects/minimal-pop-click-ui-1-198301/>)
 
