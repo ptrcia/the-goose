@@ -34,36 +34,49 @@ It is a project thought to be expanded and to create in the future new boards wi
 
 [Arguing (Baby Room)]\
 (<https://www.youtube.com/watch?v=xaK1v6dfWbk&ab_channel=FreeSoundEffects>)\
-(</>)
 
 [Player Movement]
 (<https://pixabay.com/es/sound-effects/minimal-pop-click-ui-1-198301/>)
+
 [Click 1]
 (<https://pixabay.com/es/sound-effects/ui-click-43196/>)
+
 [Click 2]
 (<https://pixabay.com/es/sound-effects/rclick-13693/>)
+
 [Round]
 (<https://pixabay.com/es/sound-effects/cute-level-up-1-189852/>)
+
 [Win]
 (<https://pixabay.com/es/sound-effects/winmutedguitar-39644/>)
+
 [Death]
 (<https://pixabay.com/es/sound-effects/90s-game-ui-15-185108/>)
+
 [Goose]
 (<https://pixabay.com/es/sound-effects/goose-bell-36559/>)
+
 [Dice]
 (<https://pixabay.com/es/sound-effects/rpg-dice-rolling-95182/>)
+
 [Jail]
 (<https://pixabay.com/es/sound-effects/lock-the-door-2-99746/>)
+
 [Well]
 (<https://pixabay.com/es/sound-effects/water-splash-199583/>)
+
 [Laberynth]
 (<https://pixabay.com/es/sound-effects/whirl-39418/>)
+
 [Inn]
 (<https://pixabay.com/es/sound-effects/busy-restaurant-dining-room-ambience-128466/>)
+
 [Inn Door]
 (<https://pixabay.com/es/sound-effects/open-and-closed-door-156814/>)
+
 [Bridge]
 (<https://pixabay.com/es/sound-effects/concrete-footsteps-6752/>)
+
 [Bounce]
 (<https://pixabay.com/es/sound-effects/plastic-ball-bounce-14790/>)
 
@@ -74,10 +87,13 @@ It is a project thought to be expanded and to create in the future new boards wi
 
 [General]
 (<https://www.fontspace.com/super-peach-font-f108563/>)
+
 [General Alternative]
 (<https://fonts.google.com/specimen/Josefin+Sans/>)
+
 [Japanese]
 (<https://fonts.google.com/specimen/Mochiy+Pop+One/>)
+
 [Japanese Alternative]
 (<https://fonts.google.com/noto/specimen/Noto+Sans+JP/>)
 
