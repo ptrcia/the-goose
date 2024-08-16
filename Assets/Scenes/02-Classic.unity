@@ -9716,67 +9716,67 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85236204
+      value: 0.7996264
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.85236204
+      value: 0.7996264
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.85236204
+      value: 0.7996264
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.980886
+      value: 7.985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.34079084
+      value: -0.378
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.4227768
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.91313285
+      value: 0.9151408
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.046443313
+      value: -0.028443364
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.39504576
+      value: -0.3944956
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.08927667
+      value: 0.077984326
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.818
+      value: 0.543
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -46.872
+      value: -46.594
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 11.523
+      value: 9.508
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5fdfd19644d5a984c917812f36800ea0,
         type: 3}
@@ -12144,7 +12144,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 02d7cf6e55365964f9aa3af9355ba9f0, type: 2}
+      objectReference: {fileID: 2100000, guid: f7b811af2fd011048b8ebd1bff99ec63, type: 2}
     - target: {fileID: 919132149155446097, guid: ae93532081486c74e9d5eccc3bd646ae,
         type: 3}
       propertyPath: m_Name
@@ -12738,7 +12738,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006331397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78c1184001ac15a4392ab8c7697cf9ee, type: 3}
   m_Name: 
@@ -18328,7 +18328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.01}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648928441
