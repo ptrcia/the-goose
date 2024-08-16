@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class RandomAnimatorToggle : MonoBehaviour
 {
-    public float minTime = 1f; // Tiempo mínimo entre activaciones/desactivaciones
-    public float maxTime = 5f; // Tiempo máximo entre activaciones/desactivaciones
+    public float minTime = 1f;
+    public float maxTime = 5f; 
 
     [SerializeField] GameObject rightWing;
     [SerializeField] GameObject leftWing;
 
-    //private Animator animator; // El componente Animator del objeto
-    private Animator animatorRight; // El componente Animator del objeto
-    private Animator animatorLeft; // El componente Animator del objeto
-
-
+    private Animator animatorRight; 
+    private Animator animatorLeft;
 
     void Start()
     {
@@ -46,7 +43,7 @@ public class RandomAnimatorToggle : MonoBehaviour
             float waitTime = Random.Range(minTime, maxTime);
             yield return new WaitForSeconds(waitTime);
 
-            bool newState = !animatorRight.enabled; // Obtener el nuevo estado basado en el ala derecha (puede ser cualquier ala)
+            bool newState = !animatorRight.enabled; 
             animatorLeft.enabled = newState;
             animatorRight.enabled = newState;
         }

@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CellContainer : MonoBehaviour
@@ -11,6 +9,15 @@ public class CellContainer : MonoBehaviour
     public List<GameObject> playersObjectsInCell = new List<GameObject>();
 
     PlayerMovement playerMovementCtrl;
+
+    [Header("Positioning")]
+    Vector3 centerPos;
+    Vector3 up;
+    Vector3 down;
+    Vector3 upRight;
+    Vector3 upleft;
+    Vector3 downRight;
+    Vector3 downLeft;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -78,53 +85,110 @@ public class CellContainer : MonoBehaviour
 
     private void CellArragement()
     {
-        Vector3 up = new Vector3(0, 0, 0.2f);
-        Vector3 down = new Vector3(0, 0, -0.2f);
-        Vector3 upRight = new Vector3(-017f, 0, 0.2f);
-        Vector3 upleft = new Vector3(017f, 0, 0.2f);
-        Vector3 downRight = new Vector3(017f, 0, -0.2f);
-        Vector3 downLeft = new Vector3(-017f, 0, -0.2f);
-        Vector3 centerPos = new Vector3(
-                    gameObject.transform.position.x,
-                    gameObject.transform.position.y,
-                    gameObject.transform.position.z);
 
-        switch (playersObjectsInCell.Count)
+        if (this.gameObject.transform.localEulerAngles.y == 180) //Vertical
         {
-            case 2:
-                Debug.Log("2 players here");
-                //up
-                playersObjectsInCell[0].transform.position = up;
-                //down
-                playersObjectsInCell[1].transform.position = down;
-                break;
-            case 3:
-                Debug.Log("3 players here");
-                //down
-                playersObjectsInCell[0].transform.position = down;
-                //up right
-                playersObjectsInCell[1].transform.position = upRight;
-                //up left
-                playersObjectsInCell[2].transform.position = upleft;
-                break;
-            case 4:
-                Debug.Log("4 players here");
-                //down right
-                playersObjectsInCell[0].transform.position = downRight;
-                //up right
-                playersObjectsInCell[1].transform.position = upRight;
-                //up left
-                playersObjectsInCell[2].transform.position = upleft;
-                //down left
-                playersObjectsInCell[3].transform.position = downLeft;
-                break;
-            default:
-                Debug.Log("Center");
-                playersObjectsInCell[0].transform.position = centerPos;
-                break;
+            Debug.Log("Vertical positioning");
+            Debug.Log(this.name + "   Y rotation: " + this.gameObject.transform.localEulerAngles.y);
+            centerPos = new Vector3(
+                        gameObject.transform.position.x,
+                        gameObject.transform.position.y,
+                        gameObject.transform.position.z);
+            up = centerPos + new Vector3(0, 0, 0.2f);
+            down = centerPos + new Vector3(0, 0, -0.2f);
+            upRight = centerPos + new Vector3(-0.17f, 0, 0.2f);
+            upleft = centerPos + new Vector3(0.17f, 0, 0.2f);
+            downRight = centerPos + new Vector3(0.17f, 0, -0.2f);
+            downLeft = centerPos + new Vector3(-0.17f, 0, -0.2f);
         }
-    }
+        else if (this.gameObject.transform.localEulerAngles.y == 90)//horitontal
+        {
+            Debug.Log("Horizontal positioning");
+            Debug.Log(this.name + "   Y rotation: " + this.gameObject.transform.localEulerAngles.y);
+            centerPos = new Vector3(
+                        gameObject.transform.position.x,
+                        gameObject.transform.position.y,
+                        gameObject.transform.position.z);
+            up = centerPos + new Vector3(-0.17f, 0, 0f);//izquierda
+            down = centerPos + new Vector3(0.17f, 0, -0.15f);//derecha
+            upRight = centerPos + new Vector3(-0.17f, 0, 0.15f);//test
+            upleft = centerPos + new Vector3(0.17f, 0, 0.15f);
+            downRight = centerPos + new Vector3(0.17f, 0, -0.15f);
+            downLeft = centerPos + new Vector3(-0.17f, 0, -0.15f);
+        }
+        else//Corners
+        {
+            if (this.gameObject.transform.localScale.x < this.gameObject.transform.localScale.z)//vertical
+            {
+                Debug.Log("Corner vertical positioning");
+                Debug.Log(this.name + "   Y rotation: " + this.gameObject.transform.localEulerAngles.y);
 
-    #endregion
+
+                centerPos = new Vector3(
+                            gameObject.transform.position.x,
+                            gameObject.transform.position.y,
+                            gameObject.transform.position.z);
+                up = centerPos + new Vector3(0, 0, 0.2f);
+                down = centerPos + new Vector3(0, 0, -0.2f);
+                upRight = centerPos + new Vector3(0f, 0, 0.15f);
+                upleft = centerPos + new Vector3(0f, 0, 0.3f);
+                downRight = centerPos + new Vector3(0f, 0, -0.15f);
+                downLeft = centerPos + new Vector3(0f, 0, -0.3f);
+            }
+            else if (this.gameObject.transform.localScale.x > this.gameObject.transform.localScale.z)//horizontal
+            {
+                Debug.Log("Corner horizontal positioning");
+                Debug.Log(this.name + "   Y rotation: " + this.gameObject.transform.localEulerAngles.y);
+
+
+                centerPos = new Vector3(
+                            gameObject.transform.position.x,
+                            gameObject.transform.position.y,
+                            gameObject.transform.position.z);
+                up = centerPos + new Vector3(0.2f, 0, 0);
+                down = centerPos + new Vector3(-0.2f, 0, 0);
+                upRight = centerPos + new Vector3(0.15f, 0, 0);
+                upleft = centerPos + new Vector3(0.3f, 0, 0);
+                downRight = centerPos + new Vector3(-0.15f, 0, 0);
+                downLeft = centerPos + new Vector3(-0.3f, 0, 0);
+            }
+        }
+
+            switch (playersObjectsInCell.Count)
+            {
+                case 2:
+                    Debug.Log("2 players here");
+                    //up
+                    playersObjectsInCell[0].transform.position = up;
+                    //down
+                    playersObjectsInCell[1].transform.position = down;
+                    break;
+                case 3:
+                    Debug.Log("3 players here");
+                    //down
+                    playersObjectsInCell[0].transform.position = down;
+                    //up right
+                    playersObjectsInCell[1].transform.position = upRight;
+                    //up left
+                    playersObjectsInCell[2].transform.position = upleft;
+                    break;
+                case 4:
+                    Debug.Log("4 players here");
+                    //down right
+                    playersObjectsInCell[0].transform.position = downRight;
+                    //up right
+                    playersObjectsInCell[1].transform.position = upRight;
+                    //up left
+                    playersObjectsInCell[2].transform.position = upleft;
+                    //down left
+                    playersObjectsInCell[3].transform.position = downLeft;
+                    break;
+                default:
+                    Debug.Log("Center");
+                    playersObjectsInCell[0].transform.position = centerPos;
+                    break;
+            }
+        }
+     #endregion
 
 }

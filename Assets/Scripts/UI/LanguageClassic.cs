@@ -54,6 +54,7 @@ public class LanguageClassic : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] TextMeshProUGUI round;
+    [SerializeField] TextMeshProUGUI info;
 
     [Header("Fonts")]
     [SerializeField] public TMP_FontAsset japaneseFont;
@@ -121,7 +122,7 @@ public class LanguageClassic : MonoBehaviour
             pause, reload, exit, mainmenu, resume,
             textWin, reloadWin, exitWin, mainmenuWin,
             master, music, SFX,
-            round
+            round, 
         };
 
         foreach (var textComponent in textComponents)
@@ -136,6 +137,7 @@ public class LanguageClassic : MonoBehaviour
     {
         TextMeshProUGUI[] textComponents = {
             gooseAddicional, bidgeAddicional, innAddicional, wellAddicional, labyrinthAddicional, dicesAddicional, jailAddicional, deathAddicional, gardenAddicional,
+            info
         };
 
         foreach (var textComponent in textComponents)
@@ -190,6 +192,7 @@ public class LanguageClassic : MonoBehaviour
         SFX.text = "Sound Effects";
 
         round.text = "New Round!";
+        info.text = "The game of Goose is a purely random game. \r\n\r\nThe players are automatically sorted randomly. \r\n\r\nEach player has to roll the dice and pay attention to the special cells, as each one affects the game in a different way. \r\n\r\nThe game ends when a player reaches the last and central cell, 62.\r\n\r\nHave fun!";
     }
 
     void SetSpanishText()
@@ -237,6 +240,7 @@ public class LanguageClassic : MonoBehaviour
         SFX.text = "Efectos de sonido";
 
         round.text = "¡Nueva Ronda!";
+        info.text = "El juego de la Oca es un juego puramente azaroso.  \r\n\r\n Los jugadores son ordenados automáticamente de manera aleatoria.  \r\n\r\nCada jugador tiene que tirar el dado y prestar atención a las casillas especiales, ya que cada una afecta de una manera a la partida.\r\n\r\nEl juego acaba cuando llega un jugador a la última  y central casilla, la 62.\r\n\r\n¡Pasadlo bien!";
     }
 
     void SetJapaneseText()
@@ -283,5 +287,6 @@ public class LanguageClassic : MonoBehaviour
         SFX.text = "効果音";
 
         round.text = "新しいラウンド！";
+        info.text = "グースゲームは純粋にランダムなゲームである。  \r\n\r\nプレイヤーは自動的にランダムに順番が決まります。 \r\n\r\n各プレイヤーはサイコロを振り、特殊なマスに注意しなければならない。 \r\n\r\nプレーヤーが最後の中央のマス、62に達するとゲームは終了します。\r\n\r\n楽しんでください！";
     }
 }
