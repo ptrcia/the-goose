@@ -8,7 +8,7 @@ Traditional game of the goose brought to the video game.
 [Created by: Patricia S. Gracia Artero](https://github.com/ptrcia/the-goose#created-by-patricia-s-gracia-artero)
 ===============================================================================================================
 
-[Date : 26-09-23](https://github.com/ptrcia/the-goose#date--16-08-24)
+[Date : 16-08-24](https://github.com/ptrcia/the-goose#date--16-08-24)
 --------------------------------------------------------------------
 
 [About:](https://github.com/ptrcia/the-goose#about)
