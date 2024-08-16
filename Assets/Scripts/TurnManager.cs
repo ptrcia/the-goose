@@ -183,7 +183,7 @@ public class TurnManager : MonoBehaviour
 
             Debug.Log("no playable turns : " + currentPlayer.GetComponent<PlayerMovement>().noPlayableTurns);
 
-            //make the Gane Rules know whos turn is
+            //make the Game Rules know who's turn is
             gameRules.CheckWhosTurn(currentPlayer.GetComponent<PlayerMovement>());
 
             //player can NOT play his turn
@@ -205,11 +205,17 @@ public class TurnManager : MonoBehaviour
             else
             {
                 Debug.Log("NO Skip Turn");
+
+                currentPlayer.GetComponentInChildren<PlayerComponentToggle>().ToggleComponent(true); //highlitghing the player
+
                 currentPlayer.GetComponent<PlayerMovement>().MoveIfDiceRolled();                             
                 while (!currentPlayer.GetComponent<PlayerMovement>().HasCompletedMovement())
                 {
                     yield return null; 
                 }
+
+                currentPlayer.GetComponentInChildren<PlayerComponentToggle>().ToggleComponent(false); //un lighlighting the player
+
                 if (nextTurnPlayer) {
                     gameManagerUI.CurrentTurnAnimationClose(currentButtonRectTransform);
                     currentPlayerIndex++;
@@ -327,7 +333,7 @@ public class TurnManager : MonoBehaviour
 
     GameObject getButtonById(String playerId)
     {
-        //Debug.Log("ID DEL JUGADOR EN LA NUEVA FUNCION JEJEJEJEJEJ: " + playerId);
+        //Debug.Log("ID DEL JUGADOR EN LA NUEVA FUNCION: " + playerId);
         foreach (GameObject button in buttonPlayerList) {
             //Debug.Log("TEXT DEL BOTON QUE TOCA COMPARAR: " + button.GetComponentInChildren<TextMeshProUGUI>().text);
             if (button.GetComponentInChildren<TextMeshProUGUI>().text == playerId)

@@ -79,4 +79,18 @@ public class GameManager : MonoBehaviour
         AudioListener.pause = true;
         SceneManager.LoadScene(actualScene);
     }
+    public void PauseButton()
+    {
+        if (!pausePanel.activeInHierarchy)
+        {
+            Time.timeScale = 0;
+            pausePanel.SetActive(true);
+        }
+        else if (pausePanel.activeInHierarchy)
+        {
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+        }
+    }
+
 }

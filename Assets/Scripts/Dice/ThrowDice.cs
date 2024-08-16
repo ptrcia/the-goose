@@ -85,7 +85,7 @@ public class ThrowDice : MonoBehaviour
             rigidbody.AddForce(Vector3.up * resultRandomForce, ForceMode.Impulse);
 
             //Debug.Log("Numero random de chances: "+resultRandomNumberofAxis);
-            if (resultRandomNumberofAxis >= 1 && resultRandomNumberofAxis <= 5) //0.4% chances  5
+            /*if (resultRandomNumberofAxis >= 1 && resultRandomNumberofAxis <= 5) //0.4% chances  5
             {
                 int resultValue = Random1Axis();
                 if (resultValue == 1)
@@ -94,14 +94,14 @@ public class ThrowDice : MonoBehaviour
                 }
                 else if (resultValue == 2)
                 {
-                    vectorTorque = new Vector3(0, y, 0);
+                    vectorTorque = new Vector3(0, y, 0); //it does not make sense only y axis
                 }
                 else if (resultValue == 3)
                 {
                     vectorTorque = new Vector3(0, 0, z);
                 }
-            }
-            else if (resultRandomNumberofAxis >= 6 && resultRandomNumberofAxis <= 100) //0.6% chances 100
+            }*/
+            if (resultRandomNumberofAxis >= 1 && resultRandomNumberofAxis <= 100) //0.6% chances 100
             {
                 int resultValue = Random1Axis();
                 if (resultValue == 1)
